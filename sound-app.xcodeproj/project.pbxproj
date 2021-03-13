@@ -13,6 +13,9 @@
 		6E80E91825EA0C970065C598 /* OboardingIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E80E91725EA0C970065C598 /* OboardingIntroView.swift */; };
 		6E80E91B25EA0D4A0065C598 /* TextViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E80E91A25EA0D4A0065C598 /* TextViews.swift */; };
 		6E80E92025EA12C00065C598 /* OnboardingFirstTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E80E91F25EA12C00065C598 /* OnboardingFirstTimeView.swift */; };
+		6E80E92325EA1D5C0065C598 /* OnboardingJoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E80E92225EA1D5C0065C598 /* OnboardingJoinView.swift */; };
+		6E80E92725EA22A40065C598 /* OnboardingFirstTimeConfigureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E80E92625EA22A40065C598 /* OnboardingFirstTimeConfigureView.swift */; };
+		6E80E92A25EA22CC0065C598 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E80E92925EA22CC0065C598 /* ImagePicker.swift */; };
 		7848439325EA013C00916547 /* sound_appApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7848439225EA013C00916547 /* sound_appApp.swift */; };
 		7848439525EA013C00916547 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7848439425EA013C00916547 /* ContentView.swift */; };
 		7848439725EA013D00916547 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7848439625EA013D00916547 /* Assets.xcassets */; };
@@ -27,6 +30,9 @@
 		6E80E91725EA0C970065C598 /* OboardingIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OboardingIntroView.swift; sourceTree = "<group>"; };
 		6E80E91A25EA0D4A0065C598 /* TextViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViews.swift; sourceTree = "<group>"; };
 		6E80E91F25EA12C00065C598 /* OnboardingFirstTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFirstTimeView.swift; sourceTree = "<group>"; };
+		6E80E92225EA1D5C0065C598 /* OnboardingJoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingJoinView.swift; sourceTree = "<group>"; };
+		6E80E92625EA22A40065C598 /* OnboardingFirstTimeConfigureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFirstTimeConfigureView.swift; sourceTree = "<group>"; };
+		6E80E92925EA22CC0065C598 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		7848438F25EA013C00916547 /* sound-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sound-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7848439225EA013C00916547 /* sound_appApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sound_appApp.swift; sourceTree = "<group>"; };
 		7848439425EA013C00916547 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +59,8 @@
 				6E80E91425EA0BAC0065C598 /* OnboardingView.swift */,
 				6E80E91725EA0C970065C598 /* OboardingIntroView.swift */,
 				6E80E91F25EA12C00065C598 /* OnboardingFirstTimeView.swift */,
+				6E80E92225EA1D5C0065C598 /* OnboardingJoinView.swift */,
+				6E80E92625EA22A40065C598 /* OnboardingFirstTimeConfigureView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -86,6 +94,7 @@
 				6E80E90C25EA0AA70065C598 /* ViewModel.swift */,
 				6E80E91025EA0B4C0065C598 /* MainView.swift */,
 				784843A225EA18E000916547 /* BrowseView.swift */,
+				6E80E92925EA22CC0065C598 /* ImagePicker.swift */,
 			);
 			path = "sound-app";
 			sourceTree = "<group>";
@@ -173,7 +182,10 @@
 				6E80E91125EA0B4C0065C598 /* MainView.swift in Sources */,
 				6E80E90D25EA0AA70065C598 /* ViewModel.swift in Sources */,
 				6E80E91525EA0BAC0065C598 /* OnboardingView.swift in Sources */,
+				6E80E92725EA22A40065C598 /* OnboardingFirstTimeConfigureView.swift in Sources */,
 				6E80E92025EA12C00065C598 /* OnboardingFirstTimeView.swift in Sources */,
+				6E80E92325EA1D5C0065C598 /* OnboardingJoinView.swift in Sources */,
+				6E80E92A25EA22CC0065C598 /* ImagePicker.swift in Sources */,
 				6E80E91B25EA0D4A0065C598 /* TextViews.swift in Sources */,
 				7848439325EA013C00916547 /* sound_appApp.swift in Sources */,
 			);
