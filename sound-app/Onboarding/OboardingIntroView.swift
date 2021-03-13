@@ -25,15 +25,15 @@ struct OnboardingIntroView: View {
                 HStack{
                     SubtitleView(input: "Setup Your First Device")
                     Image(systemName: "chevron.right")
-                }.padding().background(Color.black).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
+                }.padding(25.0).background(Color.black).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
             }).padding()
             Button(action: {
-                currentOnboardingView = .firstTime
+                currentOnboardingView = .joinGroup
             }, label: {
                 HStack{
                     SubtitleView(input: "Join An Existing Group")
                     Image(systemName: "chevron.right")
-                }.padding().background(Color.black).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
+                }.padding(25).background(Color.black).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
             })
         }
     }

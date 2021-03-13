@@ -26,7 +26,7 @@ struct OnboardingFirstTimeView: View {
                 HStack{
                     SubtitleView(input: "Scan QR Code")
                     Image(systemName: "qrcode.viewfinder").font(.title)
-                }.padding().background(Color.black).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
+                }.padding(25).background(Color.black).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
             }).padding()
             
         }

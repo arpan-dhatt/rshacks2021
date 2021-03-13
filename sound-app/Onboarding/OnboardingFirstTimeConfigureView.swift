@@ -88,11 +88,11 @@ struct OnboardingFirstTimeConfigureView_Previews: PreviewProvider {
 }
 
 enum devicePurpose: String, CaseIterable, Identifiable {
-    case security = "security"
-    case smartHome = "smartHome"
-    case hobby = "hobby"
-    case other = "other"
-    case children = "children"
+    case security = "Security"
+    case smartHome = "SmartHome"
+    case hobby = "Hobby"
+    case other = "Other"
+    case children = "Children"
     
     var id: String { self.rawValue }
 }

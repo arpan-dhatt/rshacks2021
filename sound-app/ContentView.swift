@@ -11,8 +11,7 @@ struct ContentView: View {
     @EnvironmentObject var viewModel: ViewModel
     
     var body: some View {
-        Text(viewModel.OnboardingPage)
-            .padding()
+        Text("hi")
     }
 }
 

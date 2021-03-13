@@ -8,6 +8,5 @@
 import SwiftUI
 
 class ViewModel: ObservableObject {
-    @Published var OnboardingPage = "Intro"
-    @Published var Page = "Onboarding"
+    
 }
