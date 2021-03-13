@@ -7,23 +7,30 @@
 
 import SwiftUI
 
+enum OnboardingViewEnum {
+    case intro
+    case firstTime
+    case joinGroup
+}
+
 struct OnboardingView: View {
-    @EnvironmentObject var viewModel: ViewModel
+    @State private var currentOnboardingView: OnboardingViewEnum = .intro
+    
     var body: some View {
-        if viewModel.OnboardingPage == "Intro"{
-            OnboardingIntroView()
+        if currentOnboardingView == .intro {
+            OnboardingIntroView(currentOnboardingView: $currentOnboardingView).animation(.easeInOut)
         }
-        if viewModel.OnboardingPage == "First-Time"{
-            ContentView()
+        if currentOnboardingView == .firstTime {
+            OnboardingFirstTimeView(currentOnboardingView: $currentOnboardingView).animation(.easeInOut)
         }
-        if viewModel.OnboardingPage == "Join-Existing"{
-            ContentView()
+        if currentOnboardingView == .joinGroup {
+            ContentView().animation(.easeInOut)
         }
     }
 }
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView().environmentObject(ViewModel())
+        OnboardingView()
     }
 }
