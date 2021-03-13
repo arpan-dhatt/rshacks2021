@@ -11,7 +11,6 @@ enum OnboardingViewEnum {
     case intro
     case firstTime
     case joinGroup
-    case fistTimeConfigure
 }
 
 struct OnboardingView: View {
@@ -25,10 +24,7 @@ struct OnboardingView: View {
             OnboardingFirstTimeView(currentOnboardingView: $currentOnboardingView).animation(.easeInOut)
         }
         if currentOnboardingView == .joinGroup {
-            OnboardingJoinView(currentOnboardingView: $currentOnboardingView).animation(.easeInOut)
-        }
-        if currentOnboardingView == .fistTimeConfigure {
-            OnboardingFirstTimeConfigureView(currentOnboardingView: $currentOnboardingView)
+            ContentView().animation(.easeInOut)
         }
     }
 }

@@ -28,12 +28,12 @@ struct OnboardingIntroView: View {
                 }.padding().background(Color.black).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
             }).padding()
             Button(action: {
-                currentOnboardingView = .joinGroup
+                currentOnboardingView = .firstTime
             }, label: {
                 HStack{
                     SubtitleView(input: "Join An Existing Group")
                     Image(systemName: "chevron.right")
-                }.padding(25).background(Color.black).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
+                }.padding().background(Color.black).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
             })
         }
     }

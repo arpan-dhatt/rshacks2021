@@ -10,9 +10,11 @@ import SwiftUI
 struct BrowseView: View {
     var body: some View {
         VStack {
-            Image("cart")
+            Image(systemName: "cart")
                 .resizable()
+                .padding(100)
                 .scaledToFit()
+                .foregroundColor(.gray)
             TitleViewBold(input: "Coming Soon")
             ParagraphView(input: "We didn't have the time :(")
         }

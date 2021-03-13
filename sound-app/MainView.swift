@@ -7,21 +7,33 @@
 
 import SwiftUI
 
+enum MainPageEnum {
+    case onboarding
+    case app
+}
+
 struct MainView: View {
-    @EnvironmentObject var viewModel: ViewModel
+    @State var currentPage: MainPageEnum = .onboarding
     
     var body: some View {
-        if viewModel.Page == "Onboarding"{
-            ContentView()
+        if currentPage == .onboarding {
+            OnboardingView()
         }
-        if viewModel.Page == "Intro"{
-            ContentView()
+        if currentPage == .app {
+            TabView {
+                ActivityView()
+                    .tabItem { Label("Activity", systemImage: "list.dash") }
+                DevicesView()
+                    .tabItem { Label("Devices", systemImage: "server.rack") }
+                BrowseView()
+                    .tabItem { Label("Browse", systemImage: "cart") }
+            }
         }
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView().environmentObject(ViewModel())
+        MainView(currentPage: .app)
     }
 }
