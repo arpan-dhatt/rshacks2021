@@ -18,7 +18,7 @@ struct SoundListView: View {
         ScrollView {
             VStack {
                 ForEach(dataSource.items, id: \.id) { sound in
-                    SoundCard(sound: sound).padding()
+                    SoundCard(sound: sound).padding(.horizontal).padding(.top)
                 }
             }.onAppear(perform: {
                 //self.dataSource.loadData(query: self.query)
