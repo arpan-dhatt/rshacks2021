@@ -34,7 +34,7 @@ struct OnboardingFirstTimeView: View {
                 }.padding(25).background(Color.black).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
             }).padding()
         }.sheet(isPresented: $isShowingScanner, content: {
-            CodeScannerView(codeTypes: [.qr], simulatedData: "kl234jkl23j4lk24jlk234j", completion: handleScan)
+            CodeScannerView(codeTypes: [.qr], simulatedData: "kl234jkl23j4lk24jlk234j", completion: handleScan).ignoresSafeArea()
         })
     }
     
@@ -45,6 +45,8 @@ struct OnboardingFirstTimeView: View {
                 self.currentOnboardingView = .firstTimeConfigure
             })
             self.onboardingFirstTime.new_device_id = str
+            print(str)
+            Postman.shared.create_group()
         }
     }
 }

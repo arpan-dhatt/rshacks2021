@@ -12,7 +12,9 @@ struct OnboardingJoinView: View {
     
     @EnvironmentObject var onboardingFirstTime: OnboardingFirstTimeData
     
-    @State var code = ""
+    @AppStorage("group_id") var group_id: String = "NONE"
+    @AppStorage("completed_setup") var completed_setup: Bool = false
+    
     var body: some View {
         VStack{
             Text("Sound Shot").font(.title).fontWeight(.bold).italic().padding()
@@ -23,11 +25,12 @@ struct OnboardingJoinView: View {
             }.padding()
             TitleViewBold(input: "Connect To An Existing Group").padding().multilineTextAlignment(.center)
             ParagraphView(input: "Get a group code from any device that has already been added by pressing the person icon at the top of the home page").padding().padding(.horizontal).multilineTextAlignment(.center)
-            TextField("Code", text: $code).padding().overlay(RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 2)).padding().padding(.horizontal, 20)
+            TextField("Code", text: $group_id).padding().overlay(RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 2)).padding().padding(.horizontal, 20)
             
             Button(action: {
                 withAnimation{
 //                    currentOnboardingView = .fistTimeConfigure
+                    completed_setup = true
                 }
             }, label: {
                 HStack{

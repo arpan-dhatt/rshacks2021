@@ -53,8 +53,10 @@ struct OnboardingFirstTimeConfigureView: View {
                     self.onboardingFirstTime.new_device_name = deviceName
                     self.onboardingFirstTime.location = deviceLocation
                     self.onboardingFirstTime.purpose = devicePurpose
-                    let query = create_device_Request(name: self.onboardingFirstTime.new_device_name ?? "", location: self.onboardingFirstTime.location ?? "", purpose: self.onboardingFirstTime.purpose ?? "", group_id: self.onboardingFirstTime.group_id ?? "", device_id: self.onboardingFirstTime.new_device_id ?? "")
+                    let data = create_device_Request(name: self.onboardingFirstTime.new_device_name ?? "", location: self.onboardingFirstTime.location ?? "", purpose: self.onboardingFirstTime.purpose ?? "", group_id: self.onboardingFirstTime.group_id ?? "", device_id: self.onboardingFirstTime.new_device_id ?? "")
                     // send this query to server
+                    print(data)
+                    Postman.shared.create_device(data: data)
                 }
             }, label: {
                 HStack{

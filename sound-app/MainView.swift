@@ -13,13 +13,14 @@ enum MainPageEnum {
 }
 
 struct MainView: View {
-    @State var currentPage: MainPageEnum = .onboarding
+    
+    @AppStorage("completed_setup") var completed_setup: Bool = false
     
     var body: some View {
-        if currentPage == .onboarding {
-            OnboardingView()
+        if !completed_setup {
+            OnboardingView().environmentObject(OnboardingFirstTimeData())
         }
-        if currentPage == .app {
+        else {
             TabView {
                 ActivityView()
                     .tabItem { Label("Activity", systemImage: "list.dash") }
@@ -34,6 +35,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(currentPage: .app)
+        MainView()
     }
 }

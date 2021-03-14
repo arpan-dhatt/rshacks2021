@@ -8,5 +8,5 @@
 import Foundation
 
 class NetConfig {
-    static var URL_ROOT = "http://127.0.0.1:8080/"
+    static var URL_ROOT = "http://47.37.119.216:8000/"
 }

@@ -16,6 +16,7 @@
 		6E80E92325EA1D5C0065C598 /* OnboardingJoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E80E92225EA1D5C0065C598 /* OnboardingJoinView.swift */; };
 		6E80E92725EA22A40065C598 /* OnboardingFirstTimeConfigureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E80E92625EA22A40065C598 /* OnboardingFirstTimeConfigureView.swift */; };
 		6E80E92A25EA22CC0065C598 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E80E92925EA22CC0065C598 /* ImagePicker.swift */; };
+		782E4C4725EAE4E20018B20D /* Postman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782E4C4625EAE4E20018B20D /* Postman.swift */; };
 		78339A9225EAA31600379D54 /* SoundCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78339A9125EAA31600379D54 /* SoundCard.swift */; };
 		78339A9525EAAFBE00379D54 /* WebSocketTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78339A9425EAAFBE00379D54 /* WebSocketTypes.swift */; };
 		78339A9725EAB01B00379D54 /* RESTfulTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78339A9625EAB01B00379D54 /* RESTfulTypes.swift */; };
@@ -46,6 +47,7 @@
 		6E80E92225EA1D5C0065C598 /* OnboardingJoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingJoinView.swift; sourceTree = "<group>"; };
 		6E80E92625EA22A40065C598 /* OnboardingFirstTimeConfigureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFirstTimeConfigureView.swift; sourceTree = "<group>"; };
 		6E80E92925EA22CC0065C598 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		782E4C4625EAE4E20018B20D /* Postman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Postman.swift; sourceTree = "<group>"; };
 		78339A9125EAA31600379D54 /* SoundCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCard.swift; sourceTree = "<group>"; };
 		78339A9425EAAFBE00379D54 /* WebSocketTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketTypes.swift; sourceTree = "<group>"; };
 		78339A9625EAB01B00379D54 /* RESTfulTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTfulTypes.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				78339A9825EAB43E00379D54 /* SoundListDataSource.swift */,
 				78339A9A25EAB45100379D54 /* NetConfig.swift */,
 				78339A9E25EAC11A00379D54 /* DeviceListDataSource.swift */,
+				782E4C4625EAE4E20018B20D /* Postman.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				6E80E92725EA22A40065C598 /* OnboardingFirstTimeConfigureView.swift in Sources */,
 				6E80E92025EA12C00065C598 /* OnboardingFirstTimeView.swift in Sources */,
 				6E80E92325EA1D5C0065C598 /* OnboardingJoinView.swift in Sources */,
+				782E4C4725EAE4E20018B20D /* Postman.swift in Sources */,
 				6E80E92A25EA22CC0065C598 /* ImagePicker.swift in Sources */,
 				78339A9725EAB01B00379D54 /* RESTfulTypes.swift in Sources */,
 				78339A9925EAB43E00379D54 /* SoundListDataSource.swift in Sources */,
