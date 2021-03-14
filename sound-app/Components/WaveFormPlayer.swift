@@ -10,7 +10,7 @@ import AVKit
 
 struct WaveFormPlayer: View {
     
-    @State var player: AVPlayer? = AVPlayer(url: URL(string: "https://github.com/JimLynchCodes/Game-Sound-Effects/raw/master/Sounds/Reminder.wav")!)
+    @State var audioItem: AVPlayerItem? = AVPlayerItem(url: URL(string: "https://github.com/HenrikJoreteg/SoundEffectManager/raw/master/taps.mp3")!)
     
     //anything already with = in it means that's the default value but you can still change it
     
@@ -34,9 +34,21 @@ struct WaveFormPlayer: View {
         GeometryReader { geom in
             HStack(spacing: 0) {
                 Image(systemName: timerActive ? "pause.circle.fill" : "play.circle.fill").resizable().padding(3).frame(width: 40, height: 40).foregroundColor(waveFormColor).onTapGesture {
-                    player?.play()
-                    
-                    timerActive = true
+                    if let audioItem = audioItem {
+                        AudioPlayer.shared.player.replaceCurrentItem(with: audioItem)
+                        if !AudioPlayer.shared.playedBefore.contains(audioItem) {
+                            AudioPlayer.shared.playedBefore.append(audioItem)
+                            DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+                                AudioPlayer.shared.player.play()
+                                timerActive = true
+                                
+                            })
+                        }
+                        else {
+                            AudioPlayer.shared.player.play()
+                            timerActive = true
+                        }
+                    }
                 }
                 HStack(spacing: 0) {
                     ForEach(0..<waveFormBuffer.count, id: \.self) {i in
@@ -50,7 +62,7 @@ struct WaveFormPlayer: View {
                 }
             }.background(playerBackgroundColor).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous)).frame(width: geom.size.width)
         }.onReceive(timer) {input in
-            if timerActive { updateHighlightColor(time: player?.currentItem?.currentTime(), duration: player?.currentItem?.duration) }
+            if timerActive { updateHighlightColor(time: AudioPlayer.shared.player.currentItem?.currentTime(), duration: AudioPlayer.shared.player.currentItem?.duration) }
         }.animation(.easeIn(duration: 0.25))
     }
     
@@ -70,8 +82,8 @@ struct WaveFormPlayer: View {
                 for i in 0..<waveFormActivityBuffer.count {
                     waveFormActivityBuffer[i] = false
                 }
-                player?.pause()
-                player?.currentItem?.seek(to: .zero, completionHandler: nil)
+                AudioPlayer.shared.player.pause()
+                AudioPlayer.shared.player.currentItem?.seek(to: .zero, completionHandler: nil)
             }
         }
     }
@@ -80,6 +92,6 @@ struct WaveFormPlayer: View {
 
 struct WaveFormPlayer_Previews: PreviewProvider {
     static var previews: some View {
-        WaveFormPlayer(player: AVPlayer(url: URL(string: "https://github.com/JimLynchCodes/Game-Sound-Effects/raw/master/Sounds/Reminder.wav")!))
+        WaveFormPlayer(audioItem: AVPlayerItem(url: URL(string: "https://github.com/HenrikJoreteg/SoundEffectManager/raw/master/taps.mp3")!))
     }
 }

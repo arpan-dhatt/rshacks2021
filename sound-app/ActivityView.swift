@@ -29,13 +29,6 @@ struct ActivityView: View {
                         deviceDataSource.loadFake(query: devices_Query(group_id: group_id))
                     })
                 }
-                ScrollView(.horizontal, showsIndicators: false){
-                    HStack{
-                        ForEach(allPurposes, id: \.self) { purpose in
-                            Text(purpose).frame(minWidth: 100).padding().background(Color.black).cornerRadius(25.0).shadow(radius: 10.0).foregroundColor(.white)
-                        }
-                    }.padding()
-                }
                 HStack{
                     TitleViewBold(input: "Recent Activity:")
                     Spacer()
@@ -43,13 +36,8 @@ struct ActivityView: View {
                 SoundListView(query: activity_Query(group_id: group_id, device_id: nil, category: nil))
             
 
-            }.navigationBarTitle("Activity").navigationBarItems(trailing: Button(action: {
-                withAnimation{
-                    showingInfoSheet.toggle()
-                }
-            }, label: {
-                Image(systemName: "person.crop.circle.badge.plus").resizable().frame(width: 40, height: 34).foregroundColor(.black)
-            })).sheet(isPresented: $showingInfoSheet, content: {
+            }.navigationBarTitle("Activity")
+            .sheet(isPresented: $showingInfoSheet, content: {
                 GroupInfoModal()
             })
         }

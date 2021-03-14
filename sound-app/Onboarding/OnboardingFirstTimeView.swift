@@ -18,13 +18,13 @@ struct OnboardingFirstTimeView: View {
     
     var body: some View {
         VStack{
-            Text("Sound Shot").font(.title).fontWeight(.bold).padding()
+            Text("SoundSnap").font(.title).fontWeight(.bold).padding()
             HStack{
                 Image(systemName: "dot.radiowaves.forward").font(.system(size: 200, weight: .ultraLight)).rotationEffect(.degrees(315)).offset(x:30,y:50)
                 Image(systemName: "dot.radiowaves.forward").font(.system(size: 200, weight: .ultraLight)).rotationEffect(.degrees(135)).offset(x:-30,y:-50)
             }.padding()
             TitleViewBold(input: "Linking Your First Device").padding()
-            ParagraphView(input: "Unbox your Sound Shot mic and scan the QR code on the top by pressing the button below").padding().padding(.horizontal).multilineTextAlignment(.center)
+            ParagraphView(input: "Unbox your SoundSnap mic and scan the QR code on the top by pressing the button below").padding().padding(.horizontal).multilineTextAlignment(.center)
             Button(action: {
                 self.isShowingScanner = true
             }, label: {

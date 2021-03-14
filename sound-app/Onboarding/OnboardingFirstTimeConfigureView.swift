@@ -26,7 +26,7 @@ struct OnboardingFirstTimeConfigureView: View {
     
     var body: some View {
         VStack{
-            TitleViewBold(input: "Configure Your New SoundShot").multilineTextAlignment(.center).padding(.bottom)
+            TitleViewBold(input: "Configure Your New SoundSnap").multilineTextAlignment(.center).padding(.bottom)
             
             HStack{
                 Image(systemName: "gear").font(.system(size: 100)).offset(x: 40, y: 20).rotationEffect(.degrees(35))

@@ -13,7 +13,7 @@ struct SearchBar: View {
     
     var body: some View {
             VStack {
-                TextField("Search...", text: $text).padding(10).padding(.horizontal, 25).background(Color("RedTop")).cornerRadius(10).onTapGesture{
+                TextField("Search...", text: $text).padding(10).padding(.horizontal, 25).background(Color("GrayTop")).cornerRadius(10).onTapGesture{
                     self.isEditing = true
                 }.overlay(
                     HStack{
@@ -43,7 +43,7 @@ struct SearchBar: View {
 }
 
 struct BrowseView: View {
-    var allItems = [AvailibleSound.init(name: "Yolo", category: "SmartHome", description: "something cool for the family and for teh children to make the home an easier place to live"),AvailibleSound.init(name: "asdfasf", category: "Security", description: "something cool for the family and for teh children to make the home an easier place to live"),AvailibleSound.init(name: "fasdfasf", category: "Children", description: "something cool for the family and for teh children to make the home an easier place to live"),AvailibleSound.init(name: "asfasdfas", category: "Other", description: "something cool for the family and for teh children to make the home an easier place to live")]
+    var allItems = [AvailibleSound.init(name: "Glass", category: "Security", description: "Right now, houses require dozens of glas break sensors to work, replace them with just one sensor"),AvailibleSound.init(name: "Garage", category: "Other", description: "Want to know when your housemates arrive, this add-on allows you to keep tabs on the house"),AvailibleSound.init(name: "Knock", category: "SmartHome", description: "Someone knocks on the door, but you didn't here, this add-on notifies you whenever somone is at the door"),AvailibleSound.init(name: "Child", category: "Children", description: "Child or baby in the other room, want some alone time, use this add-on to gain some freedom")]
     @State var searchText = ""
     @State var showingInfoSheet = false
     

@@ -8,6 +8,7 @@
 import SwiftUI
 
 class RecordingStateObject: ObservableObject {
+    
     @Published var device_in_use: Device?
     @Published var recordings = [Record]()
     @Published var sound_name: String?
@@ -18,29 +19,34 @@ class RecordingStateObject: ObservableObject {
     @Published var recording_status: String?
     
     func loadFake() {
-        recordings = [
-            Record(id: "a", url: "https://github.com/JimLynchCodes/Game-Sound-Effects/raw/master/Sounds/badBoing.wav", waveFormBuffer: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]),
-            Record(id: "b", url: "https://github.com/JimLynchCodes/Game-Sound-Effects/raw/master/Sounds/badBoing.wav", waveFormBuffer: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]),
-            Record(id: "c", url: "https://github.com/JimLynchCodes/Game-Sound-Effects/raw/master/Sounds/badBoing.wav", waveFormBuffer: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]),
-            Record(id: "d", url: "https://github.com/JimLynchCodes/Game-Sound-Effects/raw/master/Sounds/badBoing.wav", waveFormBuffer: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]),
-            Record(id: "d", url: "https://github.com/JimLynchCodes/Game-Sound-Effects/raw/master/Sounds/badBoing.wav", waveFormBuffer: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
-        ]
+//        recordings = [
+//            Record(id: "a", url: "https://github.com/HenrikJoreteg/SoundEffectManager/raw/master/taps.mp3", waveFormBuffer: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]),
+//            Record(id: "b", url: "https://github.com/HenrikJoreteg/SoundEffectManager/raw/master/taps.mp3", waveFormBuffer: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]),
+//            Record(id: "c", url: "https://github.com/HenrikJoreteg/SoundEffectManager/raw/master/taps.mp3", waveFormBuffer: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]),
+//            Record(id: "d", url: "https://github.com/HenrikJoreteg/SoundEffectManager/raw/master/taps.mp3", waveFormBuffer: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]),
+//            Record(id: "d", url: "https://github.com/HenrikJoreteg/SoundEffectManager/raw/master/taps.mp3", waveFormBuffer: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
+//        ]
     }
     
-    var socketTask: URLSessionWebSocketTask
+    var socketTask: URLSessionWebSocketTask?
     
-    init() {
+    func initializeConnection() {
         let url = NetConfig.WS_ROOT
+        print(url)
         socketTask = URLSession.shared.webSocketTask(with: URL(string: url)!)
         
-        socketTask.resume()
+        socketTask?.resume()
         
         receive()
         print("begun")
     }
     
+    func dropConnection() {
+        socketTask?.cancel()
+    }
+    
     private func receive() {
-        self.socketTask.receive { [weak self] result in
+        self.socketTask?.receive { [weak self] result in
             print(result)
             switch result {
             case .failure(let error):
@@ -86,7 +92,7 @@ class RecordingStateObject: ObservableObject {
     
     private func ONE_SECOND_WAV_InboundF(data: ONE_SECOND_WAV_Inbound) {
         DispatchQueue.main.async(execute: {
-        let id = String(data.url.split(separator: "/").last!).replacingOccurrences(of: ".wav", with: "")
+        let id = String(data.url.split(separator: "/").last!).replacingOccurrences(of: ".wav", with: "").replacingOccurrences(of: ".mp3", with: "")
             self.recordings.append(
             Record(id: id, url: data.url, waveFormBuffer: data.waveform)
         )
@@ -98,7 +104,7 @@ class RecordingStateObject: ObservableObject {
         let stringified = String(data: try! JSONEncoder().encode(data), encoding: .ascii)!
         let full_string = "SESSION_BEGIN||||\(stringified)"
         print(full_string)
-        self.socketTask.send(.string(full_string)) { [weak self] error in
+        self.socketTask?.send(.string(full_string)) { [weak self] error in
             guard let _ = self else {return}
             if let error = error {
                 print(error)
@@ -110,7 +116,7 @@ class RecordingStateObject: ObservableObject {
         let stringified = String(data: try! JSONEncoder().encode(data), encoding: .ascii)!
         let full_string = "ONE_SECOND_RECORD_STATUS||||\(stringified)"
         print(full_string)
-        self.socketTask.send(.string(full_string)) { [weak self] error in
+        self.socketTask?.send(.string(full_string)) { [weak self] error in
             guard let _ = self else {return}
             if let error = error {
                 print(error)
@@ -122,7 +128,7 @@ class RecordingStateObject: ObservableObject {
         let stringified = String(data: try! JSONEncoder().encode(data), encoding: .ascii)!
         let full_string = "ONE_SECOND_DELETE||||\(stringified)"
         print(full_string)
-        self.socketTask.send(.string(full_string)) { [weak self] error in
+        self.socketTask?.send(.string(full_string)) { [weak self] error in
             guard let _ = self else {return}
             if let error = error {
                 print(error)
@@ -134,7 +140,7 @@ class RecordingStateObject: ObservableObject {
         let stringified = String(data: try! JSONEncoder().encode(data), encoding: .ascii)!
         let full_string = "SESSION_END||||\(stringified)"
         print(full_string)
-        self.socketTask.send(.string(full_string)) { [weak self] error in
+        self.socketTask?.send(.string(full_string)) { [weak self] error in
             guard let _ = self else {return}
             if let error = error {
                 print(error)
@@ -145,7 +151,7 @@ class RecordingStateObject: ObservableObject {
     func SESSION_CANCEL() {
         let full_string = "SESSION_CANCEL||||{}"
         print(full_string)
-        self.socketTask.send(.string(full_string)) { [weak self] error in
+        self.socketTask?.send(.string(full_string)) { [weak self] error in
             guard let _ = self else {return}
             if let error = error {
                 print(error)

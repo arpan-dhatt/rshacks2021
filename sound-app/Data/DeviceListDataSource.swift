@@ -38,9 +38,7 @@ class DeviceListDataSource: ObservableObject {
     
     func loadFake(query: devices_Query) {
 //        items = [
-//            Device(id: "lwjkl23kj42lk3j", name: "Arpan", activeSounds: ["Hello"], location: "Outside", purpose: "SmartHome"),
-//            Device(id: "3l2jkl2kj", name: "Vivek", activeSounds: ["Hello"], location: "Inside", purpose: "Security"),
-//            Device(id: "kljlk32jl23k", name: "Saaketh", activeSounds: ["Hello"], location: "Midside", purpose: "Other")
+//            Device(id: "lwjkl23kj42lk3j", name: "Raspberry Pi", activeSounds: ["Knock"], location: "Outside", purpose: "SmartHome")
 //        ]
         print(query)
         loadData(query: query)

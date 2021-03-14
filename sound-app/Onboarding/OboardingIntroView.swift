@@ -13,30 +13,26 @@ struct OnboardingIntroView: View {
     
     @EnvironmentObject var onboardingFirstTime: OnboardingFirstTimeData
     
+    @AppStorage("group_id") var group_id: String = "NONE"
+    @AppStorage("completed_setup") var completed_setup: Bool = false
+    
     var body: some View {
         VStack{
             SubtitleView(input: "Welcome To")
-            TitleViewBold(input: "Sound Shot")
+            TitleViewBold(input: "SoundFish")
             Image(systemName: "hand.point.up.braille").font(.system(size: 150)).padding()
             ParagraphView(input: "Whether it's for a smart home, alarm system, hobby project, or anything else, the power is now in your hands").padding().multilineTextAlignment(.center).padding(.horizontal)
             SubtitleViewBold(input: "Let's Go!").padding()
             
             Button(action: {
-                currentOnboardingView = .firstTime
+                group_id = "603ab39538f5f248646f2d32"
+                completed_setup = true
             }, label: {
                 HStack{
-                    SubtitleView(input: "Setup Your First Device")
+                    SubtitleView(input: "Continue")
                     Image(systemName: "chevron.right")
                 }.padding(20.0).background(Color.black).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
             }).padding()
-            Button(action: {
-                currentOnboardingView = .joinGroup
-            }, label: {
-                HStack{
-                    SubtitleView(input: "Join An Existing Group")
-                    Image(systemName: "chevron.right")
-                }.padding(20).background(Color.black).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
-            })
         }
     }
 }

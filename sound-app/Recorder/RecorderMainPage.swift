@@ -9,7 +9,9 @@ import SwiftUI
 import AVKit
 
 struct RecorderMainPage: View {
+    
     @EnvironmentObject var recorderState: RecordingStateObject
+    
     @Binding var presenting: ActiveSheet?
     
     @State private var showingNextView = false
@@ -27,7 +29,7 @@ struct RecorderMainPage: View {
                             ForEach(recorderState.recordings, id: \.id) { record in
                                 RecordCard(record: record, minusButtonClosure: {
                                     // remove this card
-                                    self.recorderState.recordings.remove(at: self.recorderState.recordings.firstIndex(where: {rc in
+                                    recorderState.recordings.remove(at: recorderState.recordings.firstIndex(where: {rc in
                                         print(rc)
                                         // we need to tell server to get rid of this
                                         if rc.id == record.id {
@@ -44,7 +46,7 @@ struct RecorderMainPage: View {
             }
             HStack(alignment: .center) {
                 Button(action: {
-                    
+                    recorderState.ONE_SECOND_RECORD_STATUS_OutboundF(data: ONE_SECOND_RECORD_STATUS_Outbound(status: "start"))
                 }, label: {
                     Image(systemName: "mic.circle").font(.system(size: 85,weight: .ultraLight)).padding(.horizontal, 50).foregroundColor(recordButtonColor)
                 })

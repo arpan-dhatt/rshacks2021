@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct RecorderFinalPage: View {
-    @EnvironmentObject var recorderState: RecordingStateObject
     @Binding var presenting: ActiveSheet?
+    
+    
+    @EnvironmentObject var recorderState: RecordingStateObject
     
     @StateObject var dataSource = DeviceListDataSource()
     
@@ -54,7 +56,7 @@ struct RecorderFinalPage: View {
                     // tell server all the final information it needs
                     let output = SESSION_END_Outbound(name: sound_name, category: sound_category, device_ids: [selectedDeviceId])
                     recorderState.SESSION_END_Outbound(data: output)
-                    presenting = nil
+                    DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {presenting = nil; recorderState.dropConnection()})
                 }
             }, label: {
                 HStack{

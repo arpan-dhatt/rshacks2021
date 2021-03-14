@@ -26,9 +26,6 @@ struct OnboardingView: View {
         if currentOnboardingView == .firstTime {
             OnboardingFirstTimeView(currentOnboardingView: $currentOnboardingView).animation(.easeInOut)
         }
-        if currentOnboardingView == .joinGroup {
-            OnboardingJoinView(currentOnboardingView: $currentOnboardingView).animation(.easeInOut)
-        }
         if currentOnboardingView == .firstTimeConfigure {
             OnboardingFirstTimeConfigureView(currentOnboardingView: $currentOnboardingView).animation(.easeInOut)
         }

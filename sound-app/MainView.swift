@@ -26,8 +26,6 @@ struct MainView: View {
                     .tabItem { Label("Activity", systemImage: "list.dash") }
                 DevicesView()
                     .tabItem { Label("Devices", systemImage: "server.rack") }
-                BrowseView()
-                    .tabItem { Label("Browse", systemImage: "cart") }
             }
         }
     }

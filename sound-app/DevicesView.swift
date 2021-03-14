@@ -16,6 +16,9 @@ enum ActiveSheet: Identifiable {
 }
 
 struct DevicesView: View {
+    
+    @EnvironmentObject var recorderState: RecordingStateObject
+    
     @State var activeSheet: ActiveSheet?
     
     @AppStorage("group_id") var group_id = "NONE"
@@ -29,6 +32,7 @@ struct DevicesView: View {
                     Button(action: {
                         withAnimation{
                             activeSheet = .newSound
+                            recorderState.initializeConnection()
                         }
                         
                     }, label: {
@@ -49,13 +53,11 @@ struct DevicesView: View {
                     })
                 }
                 
-            }.navigationBarTitle("Devices").navigationBarItems(trailing: Button(action: {
-                withAnimation{
-                    activeSheet = .infoSheet
-                }
-            }, label: {
-                Image(systemName: "person.crop.circle.badge.plus").resizable().frame(width: 40, height: 34).foregroundColor(.black)
-            })).sheet(item: $activeSheet, content: { item in
+            }.navigationBarTitle("Devices")
+            .sheet(item: $activeSheet, onDismiss: {
+//                recorderState.SESSION_CANCEL()
+                print("cancelled session if it was active")
+            }, content: { item in
                 switch item {
                 case .infoSheet:
                     GroupInfoModal()
@@ -85,30 +87,6 @@ struct DevicePageView: View {
                 }
                 Spacer()
             }.padding()
-            
-            HStack(alignment: .top){
-                TitleViewBold(input: "Selected Sounds For This Device:")
-                Spacer()
-            }.padding()
-            
-            VStack{
-                if device.activeSounds.count != 0{
-                    ForEach(device.activeSounds, id: \.self){ dev in
-                        HStack{
-                            Image(systemName: "waveform.path").font(.title).foregroundColor(PurposeColors.getColorIcon[device.purpose])
-                            SubtitleView(input:dev)
-                            Spacer()
-                        }
-                    }
-                }
-                else {
-                    HStack(alignment: .top){
-                        SubtitleView(input: "It seems that there are no sounds selected for this device :(")
-                        Spacer()
-                    }
-                }
-                
-            }.padding().background(Color.white).cornerRadius(10.0).shadow(radius: 5.0).padding()
             
             HStack{
                 TitleViewBold(input: "Alerts From This Device")

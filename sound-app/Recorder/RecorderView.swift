@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct RecorderView: View {
+    
+    @EnvironmentObject var recorderState: RecordingStateObject
+    
     @StateObject var dataSource = DeviceListDataSource()
-    @StateObject var recorderState = RecordingStateObject()
     @AppStorage("group_id") var group_id = "NONE"
     @Binding var presenting: ActiveSheet?
     
@@ -56,7 +58,7 @@ struct RecorderView: View {
                     }.padding(20).background(selectedDevice == "" ? Color.gray : Color.green).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
                 }).padding().disabled(selectedDevice == "")
                 NavigationLink(
-                    destination: RecorderMainPage(presenting: $presenting).environmentObject(recorderState).navigationBarBackButtonHidden(true),
+                    destination: RecorderMainPage(presenting: $presenting).navigationBarBackButtonHidden(true),
                     isActive: $showingNextView,
                     label: {
                         EmptyView()
@@ -64,6 +66,7 @@ struct RecorderView: View {
             }.navigationBarTitle("Add Sound").onAppear(perform: {
                 dataSource.loadFake(query: devices_Query(group_id: group_id))
             }).navigationBarBackButtonHidden(true).onChange(of: recorderState.session_status, perform: { value in
+                print("changed session status to \(recorderState.session_status)")
                 // when server says it's ok, change state
                 if recorderState.session_status == "ready" {
                     self.showingNextView = true
