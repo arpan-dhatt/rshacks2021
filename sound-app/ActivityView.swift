@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ActivityView: View {
     var allCategories = [["one", "person.crop.circle.badge.plus"],["two", "person.crop.circle.badge.plus"],["one", "person.crop.circle.badge.plus"],["one", "person.crop.circle.badge.plus"]]
-    let allPurposes = ["All","Security","SmartHome","Hobby","Children","Other"]
+    let allPurposes = ["All","SmartHome","Security","Hobby","Children","Other"]
     var currentQuery = activity_Query.init(group_id: "4353j4lk5j34lkj5lk34j5", device_id: nil, category: nil)
     @State var showingInfoSheet = false
     @StateObject var dataSource = SoundListDataSource()
@@ -26,7 +26,7 @@ struct ActivityView: View {
                             CategoryCard(categoryName: card, categorySymbol: PurposeIcon.getIcon[card]!,alertsReceived: dataSource.alertsForCategory(category: card), devicesActive: deviceDataSource.devicesForCategory(category: card), backgroundColor: PurposeColors.getColor[card]!)
                         }
                     }.onAppear(perform: {
-                        dataSource.loadFake()
+                        dataSource.loadFake(query: activity_Query(group_id: group_id, device_id: nil, category: nil))
                         deviceDataSource.loadFake(query: devices_Query(group_id: group_id))
                     })
                 }
@@ -62,7 +62,7 @@ struct CategoryCard: View {
     var categorySymbol:String
     var alertsReceived:Int
     var devicesActive:Int
-    var backgroundColor:Color
+    var backgroundColor:LinearGradient
     
     var body: some View {
         VStack(alignment: .leading){

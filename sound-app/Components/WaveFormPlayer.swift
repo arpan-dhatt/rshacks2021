@@ -21,7 +21,7 @@ struct WaveFormPlayer: View {
     
     // these are the colors you can change, the play-button's color also changes inactive/active when playing audio
     var playerBackgroundColor: Color = .white
-    var waveFormColor: Color = .blue
+    var waveFormColor: Color = Color("PinkTop")
     var waveFormHighlightColor: Color = .white
     
     // minus button appears if this optional closure is filled with something

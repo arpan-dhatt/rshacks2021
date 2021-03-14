@@ -51,7 +51,7 @@ struct DeviceCard: View {
                 }
             }
             
-        }.padding().frame(height: 175).background(PurposeColors.getColor[device.purpose] ?? Color.green).cornerRadius(10.0).padding(.horizontal).padding(.vertical, 10).shadow(radius: 10).foregroundColor(.white)
+        }.padding().frame(height: 175).background(PurposeColors.getColor[device.purpose]).cornerRadius(10.0).padding(.horizontal).padding(.vertical, 10).shadow(radius: 10).foregroundColor(.white)
     }
 }
 

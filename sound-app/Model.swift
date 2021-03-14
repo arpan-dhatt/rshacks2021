@@ -33,24 +33,33 @@ struct Record: Identifiable {
 
 // this can be accessed globally e.g.: PurposeColors.getColor["Emergencies"]
 class PurposeColors {
-    static var getColor: [String: Color] = [
-        "All": Color.orange,
-        "Hobby": Color.blue,
-        "SmartHome": Color.green,
-        "Security": Color.red,
-        "Children": Color.pink,
-        "Other": Color.gray
+    static var getColor: [String: LinearGradient] = [
+        "All": LinearGradient(gradient: Gradient(colors: [Color("PinkTop"),Color("PinkBottom")]), startPoint: .top, endPoint: .bottom),
+        "Hobby": LinearGradient(gradient: Gradient(colors: [Color("BlueTop"),Color("BlueBottom")]), startPoint: .top, endPoint: .bottom),
+        "SmartHome": LinearGradient(gradient: Gradient(colors: [Color("GreenTop"),Color("GreenBottom")]), startPoint: .top, endPoint: .bottom),
+        "Security": LinearGradient(gradient: Gradient(colors: [Color("RedTop"),Color("RedBottom")]), startPoint: .top, endPoint: .bottom),
+        "Children": LinearGradient(gradient: Gradient(colors: [Color("OrangeTop"), Color("OrangeBottom")]), startPoint: .top, endPoint: .bottom),
+        "Other": LinearGradient(gradient: Gradient(colors: [Color("GrayTop"),Color("GrayBottom")]), startPoint: .top, endPoint: .bottom)
+    ]
+    static var getColorIcon: [String: Color] = [
+        "All": Color("PinkTop"),
+        "Hobby": Color("BlueTop"),
+        "SmartHome": Color("GreenTop"),
+        "Security": Color("RedTop"),
+        "Children": Color("OrangeTop"),
+        "Other": Color("GrayTop")
     ]
 }
 
+
 class PurposeIcon {
     static var getIcon: [String: String] = [
-        "All": "flame.fill",
-        "Hobby": "flame.fill",
-        "SmartHome": "flame.fill",
-        "Security": "flame.fill",
-        "Children": "flame.fill",
-        "Other": "flame.fill"
+        "All": "infinity",
+        "Hobby": "giftcard",
+        "SmartHome": "homekit",
+        "Security": "lock.fill",
+        "Children": "ladybug.fill",
+        "Other": "ellipsis.circle.fill"
     ]
 }
 

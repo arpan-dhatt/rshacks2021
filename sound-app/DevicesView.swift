@@ -92,7 +92,7 @@ struct DevicePageView: View {
                 if device.activeSounds.count != 0{
                     ForEach(device.activeSounds, id: \.self){ dev in
                         HStack{
-                            Image(systemName: "waveform.path").font(.title).foregroundColor(PurposeColors.getColor[device.purpose])
+                            Image(systemName: "waveform.path").font(.title).foregroundColor(PurposeColors.getColorIcon[device.purpose])
                             SubtitleView(input:dev)
                             Spacer()
                         }
