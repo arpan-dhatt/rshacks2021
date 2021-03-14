@@ -12,7 +12,7 @@ class DeviceListDataSource: ObservableObject {
     @Published var items = [Device]()
     
     private func formURL(_ query: devices_Query) -> URL {
-        return URL(string: NetConfig.URL_ROOT+"?group_id=\(query.group_id)")!
+        return URL(string: NetConfig.URL_ROOT+"group/devices?group_id=\(query.group_id)")!
     }
     
     func loadData(query: devices_Query) {

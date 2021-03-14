@@ -17,10 +17,10 @@ struct DeviceListView: View {
     var body: some View {
         VStack {
             ForEach(dataSource.items, id: \.id) { device in
-                Text("hi")
+                DeviceCard(device: device)
             }
         }.onAppear(perform: {
-            self.dataSource.loadData(query: self.query)
+            self.dataSource.loadFake()
         })
     }
 }
