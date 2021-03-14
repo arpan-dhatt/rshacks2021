@@ -17,6 +17,9 @@ struct OnboardingFirstTimeConfigureView: View {
     @State var deviceLocation = ""
     @State var devicePurpose: String = "Other"
     
+    @AppStorage("group_id") var group_id: String = "NONE"
+    @AppStorage("completed_setup") var completed_setup: Bool = false
+    
     let allPurposes = ["Security","SmartHome","Hobby","Children","Other"]
     
     @EnvironmentObject var onboardingFirstTime: OnboardingFirstTimeData
@@ -28,7 +31,7 @@ struct OnboardingFirstTimeConfigureView: View {
             HStack{
                 Image(systemName: "gear").font(.system(size: 100)).offset(x: 40, y: 20).rotationEffect(.degrees(35))
                 Image(systemName: "gear").font(.system(size: 100)).offset(x: -40, y: -20)
-                
+
             }
             
             VStack{
@@ -49,14 +52,14 @@ struct OnboardingFirstTimeConfigureView: View {
             
             Button(action: {
                 withAnimation{
-                    self.onboardingFirstTime.group_id = ""
                     self.onboardingFirstTime.new_device_name = deviceName
                     self.onboardingFirstTime.location = deviceLocation
                     self.onboardingFirstTime.purpose = devicePurpose
-                    let data = create_device_Request(name: self.onboardingFirstTime.new_device_name ?? "", location: self.onboardingFirstTime.location ?? "", purpose: self.onboardingFirstTime.purpose ?? "", group_id: self.onboardingFirstTime.group_id ?? "", device_id: self.onboardingFirstTime.new_device_id ?? "")
+                    let data = create_device_Request(name: self.onboardingFirstTime.new_device_name ?? "", location: self.onboardingFirstTime.location ?? "", purpose: self.onboardingFirstTime.purpose ?? "", group_id: group_id, device_id: self.onboardingFirstTime.new_device_id ?? "")
                     // send this query to server
                     print(data)
                     Postman.shared.create_device(data: data)
+                    completed_setup = true
                 }
             }, label: {
                 HStack{
