@@ -33,7 +33,7 @@ struct WaveFormPlayer: View {
     var body: some View {
         GeometryReader { geom in
             HStack(spacing: 0) {
-                Image(systemName: "play.circle.fill").resizable().padding(3).frame(width: 50, height: 50).foregroundColor(timerActive ? waveFormHighlightColor : waveFormColor).onTapGesture {
+                Image(systemName: timerActive ? "pause.circle.fill" : "play.circle.fill").resizable().padding(3).frame(width: 50, height: 50).foregroundColor(timerActive ? waveFormHighlightColor : waveFormColor).onTapGesture {
                     player?.play()
                     
                     timerActive = true
@@ -51,7 +51,7 @@ struct WaveFormPlayer: View {
             }.background(playerBackgroundColor).clipShape(RoundedRectangle(cornerRadius: 100, style: .continuous)).frame(width: geom.size.width)
         }.onReceive(timer) {input in
             if timerActive { updateHighlightColor(time: player?.currentItem?.currentTime(), duration: player?.currentItem?.duration) }
-        }.animation(.easeInOut)
+        }.animation(.easeIn(duration: 0.25))
     }
     
     func updateHighlightColor(time: CMTime?, duration: CMTime?) {
@@ -59,7 +59,7 @@ struct WaveFormPlayer: View {
             if time.seconds < duration.seconds {
                 let activeInt = Int(time.seconds / (duration.seconds) * Double(waveFormActivityBuffer.count))
                 for i in 0..<waveFormActivityBuffer.count {
-                    if i <= activeInt {
+                    if i > activeInt && i < activeInt+5 {
                         waveFormActivityBuffer[i] = true
                     } else {
                         waveFormActivityBuffer[i] = false
