@@ -19,6 +19,8 @@ struct OnboardingFirstTimeConfigureView: View {
     
     let allPurposes = ["Security","SmartHome","Hobby","Children","Other"]
     
+    @EnvironmentObject var onboardingFirstTime: OnboardingFirstTimeData
+    
     var body: some View {
         VStack{
             TitleViewBold(input: "Configure Your New SoundShot").multilineTextAlignment(.center).padding(.bottom)
@@ -47,7 +49,12 @@ struct OnboardingFirstTimeConfigureView: View {
             
             Button(action: {
                 withAnimation{
-                    currentOnboardingView = .firstTime
+                    self.onboardingFirstTime.group_id = ""
+                    self.onboardingFirstTime.new_device_name = deviceName
+                    self.onboardingFirstTime.location = deviceLocation
+                    self.onboardingFirstTime.purpose = devicePurpose
+                    let query = create_device_Request(name: self.onboardingFirstTime.new_device_name ?? "", location: self.onboardingFirstTime.location ?? "", purpose: self.onboardingFirstTime.purpose ?? "", group_id: self.onboardingFirstTime.group_id ?? "", device_id: self.onboardingFirstTime.new_device_id ?? "")
+                    // send this query to server
                 }
             }, label: {
                 HStack{
@@ -65,7 +72,7 @@ struct OnboardingFirstTimeConfigureView: View {
 
 struct OnboardingFirstTimeConfigureView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingFirstTimeConfigureView(currentOnboardingView: .constant(.fistTimeConfigure))
+        OnboardingFirstTimeConfigureView(currentOnboardingView: .constant(.firstTimeConfigure))
     }
 }
 
