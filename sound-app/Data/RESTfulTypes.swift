@@ -18,6 +18,7 @@ struct create_device_Request: Codable {
     var location: String
     var purpose: String
     var group_id: String
+    var device_id: String
 }
 struct create_device_Response: Codable {
     var _id: String
@@ -50,7 +51,8 @@ struct devices_ResponseItem: Codable {
     var name: String
     var location: String
     var purpose: String
-    var device_id: String
+    var _id: String
+    var group_id: String
 }
 struct devices_Response: Codable {
     var devices_list: [devices_ResponseItem]

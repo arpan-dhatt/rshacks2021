@@ -15,17 +15,14 @@ struct SoundListView: View {
     var query: activity_Query
     
     var body: some View {
-        ScrollView {
-            VStack {
-                ForEach(dataSource.items, id: \.id) { sound in
-                    SoundCard(sound: sound)
-                }
-            }.onAppear(perform: {
-                //self.dataSource.loadData(query: self.query)
-                self.dataSource.loadFake()
-            }).padding()
-        }
-        
+        VStack {
+            ForEach(dataSource.items, id: \.id) { sound in
+                SoundCard(sound: sound)
+            }
+        }.onAppear(perform: {
+            //self.dataSource.loadData(query: self.query)
+            self.dataSource.loadFake()
+        }).padding()
     }
 }
 

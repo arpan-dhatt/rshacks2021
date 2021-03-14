@@ -9,6 +9,9 @@ import SwiftUI
 
 struct OnboardingJoinView: View {
     @Binding var currentOnboardingView: OnboardingViewEnum
+    
+    @EnvironmentObject var onboardingFirstTime: OnboardingFirstTimeData
+    
     @State var code = ""
     var body: some View {
         VStack{
@@ -24,7 +27,7 @@ struct OnboardingJoinView: View {
             
             Button(action: {
                 withAnimation{
-                    currentOnboardingView = .fistTimeConfigure
+//                    currentOnboardingView = .fistTimeConfigure
                 }
             }, label: {
                 HStack{
