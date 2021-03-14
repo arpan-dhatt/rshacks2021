@@ -10,6 +10,7 @@ import AVKit
 
 struct SoundCard: View {
     
+    // these have default values but you can change them at initialization ofc
     var soundName: String = "Sound"
     var deviceName: String = "Device"
     var category: String = "Category"
