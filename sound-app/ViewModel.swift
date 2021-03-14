@@ -2,7 +2,7 @@
 //  ViewModel.swift
 //  sound-app
 //
-//  Created by SaakethC on 3/13/21.
+//  Created by Arpan Dhatt on 3/13/21.
 //
 
 import SwiftUI

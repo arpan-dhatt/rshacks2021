@@ -2,7 +2,7 @@
 //  RecordingState.swift
 //  sound-app
 //
-//  Created by Arpan Dhatt on 3/13/21.
+//  Created by Arpan Dhatt on 2/27/21.
 //
 
 import SwiftUI
@@ -22,6 +22,7 @@ class RecordingStateObject: ObservableObject {
             Record(id: "a", url: "https://github.com/JimLynchCodes/Game-Sound-Effects/raw/master/Sounds/badBoing.wav", waveFormBuffer: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]),
             Record(id: "b", url: "https://github.com/JimLynchCodes/Game-Sound-Effects/raw/master/Sounds/badBoing.wav", waveFormBuffer: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]),
             Record(id: "c", url: "https://github.com/JimLynchCodes/Game-Sound-Effects/raw/master/Sounds/badBoing.wav", waveFormBuffer: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]),
+            Record(id: "d", url: "https://github.com/JimLynchCodes/Game-Sound-Effects/raw/master/Sounds/badBoing.wav", waveFormBuffer: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]),
             Record(id: "d", url: "https://github.com/JimLynchCodes/Game-Sound-Effects/raw/master/Sounds/badBoing.wav", waveFormBuffer: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
         ]
     }
@@ -41,20 +42,19 @@ class RecordingStateObject: ObservableObject {
     private func receive() {
         self.socketTask.receive { [weak self] result in
             print(result)
-            guard let self = self else { self?.receive(); return }
             switch result {
             case .failure(let error):
                 print(error)
             case .success(let message):
-                switch message {
-                case .string(let text):
-                    self.handleReception(text)
-                case .data(let data):
-                    print(data)
-                }
+                    switch message {
+                    case .string(let text):
+                        self?.handleReception(text)
+                    case .data(let data):
+                        print(data)
+                    }
+                    self?.receive()
             }
         }
-        receive()
     }
     
     // ALL INBOUND STUFF IS HERE
@@ -77,18 +77,20 @@ class RecordingStateObject: ObservableObject {
     
     // receiving functions
     private func SESSION_BEGIN_STATUS_InboundF(data: SESSION_BEGIN_STATUS_Inbound) {
-        session_status = data.status
+        DispatchQueue.main.async(execute: {self.session_status = data.status})
     }
     
     private func ONE_SECOND_RECORD_STATUS_InboundF(data: ONE_SECOND_RECORD_STATUS_Inbound) {
-        recording_status = data.status
+        DispatchQueue.main.async(execute: {self.recording_status = data.status})
     }
     
     private func ONE_SECOND_WAV_InboundF(data: ONE_SECOND_WAV_Inbound) {
+        DispatchQueue.main.async(execute: {
         let id = String(data.url.split(separator: "/").last!).replacingOccurrences(of: ".wav", with: "")
-        recordings.append(
+            self.recordings.append(
             Record(id: id, url: data.url, waveFormBuffer: data.waveform)
         )
+        })
     }
     
     // ALL OUTBOUND STUFF HERE

@@ -10,6 +10,7 @@ import SwiftUI
 struct RecorderView: View {
     @StateObject var dataSource = DeviceListDataSource()
     @StateObject var recorderState = RecordingStateObject()
+    @Binding var isPresented: Bool
     
     @State private var showingNextView = false
     
@@ -45,7 +46,7 @@ struct RecorderView: View {
                     }.padding(25).background(selectedDevice == "" ? Color.gray : Color.black).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
                 }).padding().disabled(selectedDevice == "")
                 NavigationLink(
-                    destination: RecorderMainPage().environmentObject(recorderState).navigationBarBackButtonHidden(true),
+                    destination: RecorderMainPage(isPresented: $isPresented).environmentObject(recorderState).navigationBarBackButtonHidden(true),
                     isActive: $showingNextView,
                     label: {
                         EmptyView()
@@ -59,6 +60,6 @@ struct RecorderView: View {
 
 struct RecorderView_Previews: PreviewProvider {
     static var previews: some View {
-        RecorderView()
+        RecorderView(isPresented: .constant(false))
     }
 }

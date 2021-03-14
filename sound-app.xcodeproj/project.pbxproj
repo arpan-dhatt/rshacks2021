@@ -22,6 +22,8 @@
 		782E4C4C25EAF52D0018B20D /* RecorderMainPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782E4C4B25EAF52D0018B20D /* RecorderMainPage.swift */; };
 		782E4C4E25EAFA060018B20D /* RecorderFinalPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782E4C4D25EAFA060018B20D /* RecorderFinalPage.swift */; };
 		782E4C5025EAFFA70018B20D /* DeviceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782E4C4F25EAFFA70018B20D /* DeviceCard.swift */; };
+		782E4C5225EB01310018B20D /* RecordingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782E4C5125EB01310018B20D /* RecordingState.swift */; };
+		782E4C5425EB07BE0018B20D /* RecordCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782E4C5325EB07BE0018B20D /* RecordCard.swift */; };
 		78339A9225EAA31600379D54 /* SoundCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78339A9125EAA31600379D54 /* SoundCard.swift */; };
 		78339A9525EAAFBE00379D54 /* WebSocketTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78339A9425EAAFBE00379D54 /* WebSocketTypes.swift */; };
 		78339A9725EAB01B00379D54 /* RESTfulTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78339A9625EAB01B00379D54 /* RESTfulTypes.swift */; };
@@ -58,6 +60,8 @@
 		782E4C4B25EAF52D0018B20D /* RecorderMainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderMainPage.swift; sourceTree = "<group>"; };
 		782E4C4D25EAFA060018B20D /* RecorderFinalPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderFinalPage.swift; sourceTree = "<group>"; };
 		782E4C4F25EAFFA70018B20D /* DeviceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCard.swift; sourceTree = "<group>"; };
+		782E4C5125EB01310018B20D /* RecordingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingState.swift; sourceTree = "<group>"; };
+		782E4C5325EB07BE0018B20D /* RecordCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCard.swift; sourceTree = "<group>"; };
 		78339A9125EAA31600379D54 /* SoundCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCard.swift; sourceTree = "<group>"; };
 		78339A9425EAAFBE00379D54 /* WebSocketTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketTypes.swift; sourceTree = "<group>"; };
 		78339A9625EAB01B00379D54 /* RESTfulTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTfulTypes.swift; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 				782E4C4925EAF1CD0018B20D /* RecorderView.swift */,
 				782E4C4B25EAF52D0018B20D /* RecorderMainPage.swift */,
 				782E4C4D25EAFA060018B20D /* RecorderFinalPage.swift */,
+				782E4C5125EB01310018B20D /* RecordingState.swift */,
 			);
 			path = Recorder;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 				78339A9125EAA31600379D54 /* SoundCard.swift */,
 				782E4C4F25EAFFA70018B20D /* DeviceCard.swift */,
 				6EBBF62A25EB169100112F44 /* GroupInfoModal.swift */,
+				782E4C5325EB07BE0018B20D /* RecordCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -278,6 +284,7 @@
 				78B8500525EA22A300FDEDBE /* ActivityView.swift in Sources */,
 				6E80E91125EA0B4C0065C598 /* MainView.swift in Sources */,
 				6E80E90D25EA0AA70065C598 /* ViewModel.swift in Sources */,
+				782E4C5425EB07BE0018B20D /* RecordCard.swift in Sources */,
 				6E80E91525EA0BAC0065C598 /* OnboardingView.swift in Sources */,
 				6E80E92725EA22A40065C598 /* OnboardingFirstTimeConfigureView.swift in Sources */,
 				6E80E92025EA12C00065C598 /* OnboardingFirstTimeView.swift in Sources */,
@@ -288,6 +295,7 @@
 				78339A9725EAB01B00379D54 /* RESTfulTypes.swift in Sources */,
 				78339A9925EAB43E00379D54 /* SoundListDataSource.swift in Sources */,
 				6E80E91B25EA0D4A0065C598 /* TextViews.swift in Sources */,
+				782E4C5225EB01310018B20D /* RecordingState.swift in Sources */,
 				78339A9225EAA31600379D54 /* SoundCard.swift in Sources */,
 				7848439325EA013C00916547 /* sound_appApp.swift in Sources */,
 				78B8500A25EA23FF00FDEDBE /* WaveFormPlayer.swift in Sources */,
