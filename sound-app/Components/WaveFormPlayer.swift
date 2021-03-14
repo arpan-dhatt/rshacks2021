@@ -22,18 +22,18 @@ struct WaveFormPlayer: View {
     // these are the colors you can change, the play-button's color also changes inactive/active when playing audio
     var playerBackgroundColor: Color = .white
     var waveFormColor: Color = .blue
-    var waveFormHighlightColor: Color = .white
+    var waveFormHighlightColor: Color = .green
     
     // minus button appears if this optional closure is filled with something
     var minusButton: (() -> Void)?
     
-    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect()
     @State private var timerActive: Bool = false
     
     var body: some View {
         GeometryReader { geom in
             HStack(spacing: 0) {
-                Image(systemName: timerActive ? "pause.circle.fill" : "play.circle.fill").resizable().padding(3).frame(width: 40, height: 40).foregroundColor(waveFormColor).onTapGesture {
+                Image(systemName: timerActive ? "pause.circle.fill" : "play.circle.fill").resizable().padding(3).frame(width: 40, height: 40).foregroundColor(timerActive ? waveFormHighlightColor : waveFormColor).onTapGesture {
                     player?.play()
                     
                     timerActive = true
@@ -46,7 +46,7 @@ struct WaveFormPlayer: View {
                     }
                 }.padding(.vertical, 8).padding(.trailing, minusButton == nil ? 15 : 0)
                 if let minusButtonClosure = minusButton {
-                    Image(systemName: "minus.circle.fill").resizable().padding(3).frame(width: 40, height: 40).onTapGesture(perform: minusButtonClosure).foregroundColor(.red)
+                    Image(systemName: "minus.circle.fill").resizable().padding(3).frame(width: 50, height: 50).onTapGesture(perform: minusButtonClosure).foregroundColor(.red)
                 }
             }.background(playerBackgroundColor).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous)).frame(width: geom.size.width)
         }.onReceive(timer) {input in

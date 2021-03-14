@@ -11,6 +11,7 @@ struct ActivityView: View {
     var allCategories = [["one", "person.crop.circle.badge.plus"],["two", "person.crop.circle.badge.plus"],["one", "person.crop.circle.badge.plus"],["one", "person.crop.circle.badge.plus"]]
     let allPurposes = ["All", "Security","SmartHome","Hobby","Children","Other"]
     var currentQuery = activity_Query.init(group_id: "4353j4lk5j34lkj5lk34j5", device_id: nil, category: nil)
+    @State var showingInfoSheet = false
     
     var body: some View {
         NavigationView {
@@ -37,10 +38,14 @@ struct ActivityView: View {
             
 
             }.navigationBarTitle("Activity").navigationBarItems(trailing: Button(action: {
-                // will show and let you copy group id
+                withAnimation{
+                    showingInfoSheet.toggle()
+                }
             }, label: {
                 Image(systemName: "person.crop.circle.badge.plus").resizable().frame(width: 40, height: 30).foregroundColor(.black)
-            }))
+            })).sheet(isPresented: $showingInfoSheet, content: {
+                GroupInfoModal()
+            })
         }
     }
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct sound_appApp: App {
     var body: some Scene {
         WindowGroup {
-            RecorderView().environmentObject(ViewModel())
+            MainView().environmentObject(ViewModel())
         }
     }
 }

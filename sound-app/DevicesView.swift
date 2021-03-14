@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DevicesView: View {
+    @State var showingInfoSheet = false
     
     var body: some View {
         NavigationView{
@@ -39,10 +40,14 @@ struct DevicesView: View {
                 }
                 
             }.navigationBarTitle("Activity").navigationBarItems(trailing: Button(action: {
-                // will show and let you copy group id
+                withAnimation{
+                    showingInfoSheet.toggle()
+                }
             }, label: {
                 Image(systemName: "person.crop.circle.badge.plus").resizable().frame(width: 40, height: 30).foregroundColor(.black)
-            }))
+            })).sheet(isPresented: $showingInfoSheet, content: {
+                GroupInfoModal()
+            })
         }
     }
 }
@@ -50,6 +55,7 @@ struct DevicesView: View {
 struct DevicePageView: View {
     var device: Device
     var currentQuery = activity_Query.init(group_id: "4353j4lk5j34lkj5lk34j5", device_id: nil, category: nil)
+    
     var body: some View{
         ScrollView{
             HStack(alignment: .top){
