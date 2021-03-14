@@ -16,6 +16,7 @@ struct RecorderFinalPage: View {
     @State private var sound_name = ""
     @State private var sound_category = "Other"
     @State private var selectedDevices = ""
+    @State private var selectedDeviceId = ""
     
     var allCategories = ["Alert", "Info", "Other"]
     
@@ -29,30 +30,35 @@ struct RecorderFinalPage: View {
                     Text(purpose).frame(minWidth: 200)
                 }
             }.pickerStyle(MenuPickerStyle()).frame(minWidth: 275).padding().overlay(RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 1.5)).foregroundColor(.black)
-            SubtitleViewLight(input: "Which Devices Should Listen?").padding(.top)
+            SubtitleViewLight(input: "Which Devices Should Listen For This Sound?").padding()
             VStack {
+                ScrollView{
                 ForEach(dataSource.items, id: \.id) { device in
                     if selectedDevices == device.name {
-                        ParagraphView(input: device.name).padding(8).background(Color.black).foregroundColor(.white)
+                        ParagraphView(input: device.name).padding(10).frame(width: 200).background(Color.black).cornerRadius(10.0).foregroundColor(.white).shadow(radius: 5).padding(5)
                     }
                     else {
-                        ParagraphView(input: device.name).padding(8).background(Color.white).foregroundColor(.black).onTapGesture {
+                        ParagraphView(input: device.name).padding(10).frame(width: 200).background(Color.white).cornerRadius(10.0).foregroundColor(.black).shadow(radius: 5).padding(5).onTapGesture {
                             withAnimation {
                                 selectedDevices = device.name
                             }
                         }
                     }
                 }
-            }.scaledToFill()
+                }
+            }
             Button(action: {
                 withAnimation{
+                    // tell server all the final information it needs
+                    let output = SESSION_END_Outbound(name: sound_name, category: sound_category, device_ids: [selectedDeviceId])
+                    recorderState.SESSION_END_Outbound(data: output)
                     isPresented = false
                 }
             }, label: {
                 HStack{
-                    SubtitleView(input: "Done")
-                    Image(systemName: "checkmark").font(.title)
-                }.padding(15).background(Color.black).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
+                    SubtitleView(input: "Add")
+                    Image(systemName: "plus").font(.title2)
+                }.padding(20).background(Color.black).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
             }).padding().transition(.slide).padding(.top)
         }.navigationBarTitle("Almost Done").onAppear {
             dataSource.loadFake()
