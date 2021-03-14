@@ -25,12 +25,30 @@ struct Sound: Identifiable {
     var waveFormBuffer: [Float]
 }
 
+struct Record: Identifiable {
+    var id: String
+    var url: String
+    var waveFormBuffer: [Float]
+}
+
 // this can be accessed globally e.g.: PurposeColors.getColor["Emergencies"]
 class PurposeColors {
     static var getColor: [String: Color] = [
-        "Emergencies": Color.red,
+        "Hobby": Color.blue,
+        "SmartHome": Color.green,
+        "Security": Color.red,
         "Children": Color.pink,
         "Other": Color.gray
+    ]
+}
+
+class PurposeIcon {
+    static var getIcon: [String: String] = [
+        "Hobby": "flame.fill",
+        "SmartHome": "flame.fill",
+        "Security": "flame.fill",
+        "Children": "flame.fill",
+        "Other": "flame.fill"
     ]
 }
 
@@ -50,4 +68,12 @@ class OnboardingFirstTimeData: ObservableObject {
     @Published var location: String?
     @Published var purpose: String?
     @Published var group_id: String?
+}
+
+class RecordingStateObject: ObservableObject {
+    @Published var device_in_use: Device?
+    @Published var recordings = [Record]()
+    @Published var sound_name: String?
+    @Published var sound_category: String?
+    @Published var use_devices: [Device]?
 }

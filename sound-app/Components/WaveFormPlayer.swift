@@ -20,7 +20,7 @@ struct WaveFormPlayer: View {
     @State private var waveFormActivityBuffer: [Bool] = [Bool](repeating: false, count: 20)
     
     // these are the colors you can change, the play-button's color also changes inactive/active when playing audio
-    var playerBackgroundColor: Color = .init(CGColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0))
+    var playerBackgroundColor: Color = .white
     var waveFormColor: Color = .blue
     var waveFormHighlightColor: Color = .green
     
@@ -33,7 +33,7 @@ struct WaveFormPlayer: View {
     var body: some View {
         GeometryReader { geom in
             HStack(spacing: 0) {
-                Image(systemName: timerActive ? "pause.circle.fill" : "play.circle.fill").resizable().padding(3).frame(width: 50, height: 50).foregroundColor(timerActive ? waveFormHighlightColor : waveFormColor).onTapGesture {
+                Image(systemName: timerActive ? "pause.circle.fill" : "play.circle.fill").resizable().padding(3).frame(width: 40, height: 40).foregroundColor(timerActive ? waveFormHighlightColor : waveFormColor).onTapGesture {
                     player?.play()
                     
                     timerActive = true

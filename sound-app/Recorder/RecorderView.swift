@@ -9,7 +9,8 @@ import SwiftUI
 
 struct RecorderView: View {
     @StateObject var dataSource = DeviceListDataSource()
-
+    @StateObject var recorderState = RecordingStateObject()
+    
     @State private var showingNextView = false
     
     @State private var selectedDevice = ""
@@ -28,6 +29,7 @@ struct RecorderView: View {
                             ParagraphView(input: device.name).padding(8).background(Color.white).foregroundColor(.black).onTapGesture {
                                 withAnimation {
                                     selectedDevice = device.name
+                                    recorderState.device_in_use = device
                                 }
                             }
                         }
@@ -43,14 +45,14 @@ struct RecorderView: View {
                     }.padding(25).background(selectedDevice == "" ? Color.gray : Color.black).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
                 }).padding().disabled(selectedDevice == "")
                 NavigationLink(
-                    destination: Text("hi"),
+                    destination: RecorderMainPage().environmentObject(recorderState).navigationBarBackButtonHidden(true),
                     isActive: $showingNextView,
                     label: {
                         EmptyView()
                     })
             }.navigationBarTitle("Create Sound").onAppear(perform: {
                 dataSource.loadFake()
-            })
+            }).navigationBarBackButtonHidden(true)
         }
     }
 }

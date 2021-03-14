@@ -8,17 +8,23 @@
 import SwiftUI
 
 struct RecorderMainPage: View {
+    @EnvironmentObject var recorderState: RecordingStateObject
+    
     var body: some View {
-        NavigationView {
+        ScrollView {
             VStack {
-                
-            }.navigationBarTitle()
+                ParagraphView(input: "Press the microphone and make the noise you want to train.").multilineTextAlignment(.center).padding()
+                Text("Minimum of 8 Recordings required").font(.caption)
+
+            }.navigationBarTitle(recorderState.device_in_use?.name ?? "Device Name").navigationBarBackButtonHidden(true)
         }
     }
 }
 
 struct RecorderMainPage_Previews: PreviewProvider {
     static var previews: some View {
-        RecorderMainPage()
+        NavigationView {
+            RecorderMainPage().environmentObject(RecordingStateObject())
+        }
     }
 }
