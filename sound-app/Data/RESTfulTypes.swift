@@ -49,7 +49,7 @@ struct devices_Query: Codable {
 struct devices_ResponseItem: Codable {
     var name: String
     var location: String
-    var purpose: String
+    var category: String
     var device_id: String
 }
 struct devices_Response: Codable {
