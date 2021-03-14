@@ -16,7 +16,6 @@ struct RecorderFinalPage: View {
     @State private var sound_name = ""
     @State private var sound_category = "Other"
     @State private var selectedDevices = ""
-    @State private var selectedDeviceId = ""
     
     var allCategories = ["Alert", "Info", "Other"]
     
@@ -49,9 +48,6 @@ struct RecorderFinalPage: View {
             }
             Button(action: {
                 withAnimation{
-                    // tell server all the final information it needs
-                    let output = SESSION_END_Outbound(name: sound_name, category: sound_category, device_ids: [selectedDeviceId])
-                    recorderState.SESSION_END_Outbound(data: output)
                     isPresented = false
                 }
             }, label: {

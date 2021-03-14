@@ -10,7 +10,6 @@ import SwiftUI
 struct RecorderView: View {
     @StateObject var dataSource = DeviceListDataSource()
     @StateObject var recorderState = RecordingStateObject()
-    @AppStorage("group_id") var group_id = "NONE"
     @Binding var isPresented: Bool
     
     @State private var showingNextView = false
@@ -44,11 +43,8 @@ struct RecorderView: View {
                 }
                 }
                 Button(action: {
-                    // tell server to prime a device
-                    recorderState.SESSION_BEGIN_OutboundF(data: SESSION_BEGIN_Outbound(group_id: group_id, device_id: recorderState.device_in_use!.id))
-                    print("waiting for server")
-                    //next in recorder doesn't start until session status has returned from server
-//                    showingNextView = true
+                    //next in recorder
+                    showingNextView = true
                 }, label: {
                     HStack{
                         SubtitleView(input: "Continue")
@@ -63,12 +59,7 @@ struct RecorderView: View {
                     })
             }.navigationBarTitle("Add Sound").onAppear(perform: {
                 dataSource.loadFake()
-            }).navigationBarBackButtonHidden(true).onChange(of: recorderState.session_status, perform: { value in
-                // when server says it's ok, change state
-                if recorderState.session_status == "ready" {
-                    self.showingNextView = true
-                }
-            })
+            }).navigationBarBackButtonHidden(true)
         }
     }
 }

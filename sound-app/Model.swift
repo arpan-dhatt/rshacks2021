@@ -34,6 +34,7 @@ struct Record: Identifiable {
 // this can be accessed globally e.g.: PurposeColors.getColor["Emergencies"]
 class PurposeColors {
     static var getColor: [String: Color] = [
+        "All": Color.orange,
         "Hobby": Color.blue,
         "SmartHome": Color.green,
         "Security": Color.red,
@@ -44,6 +45,7 @@ class PurposeColors {
 
 class PurposeIcon {
     static var getIcon: [String: String] = [
+        "All": "flame.fill",
         "Hobby": "flame.fill",
         "SmartHome": "flame.fill",
         "Security": "flame.fill",

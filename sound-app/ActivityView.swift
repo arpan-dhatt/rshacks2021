@@ -9,17 +9,18 @@ import SwiftUI
 
 struct ActivityView: View {
     var allCategories = [["one", "person.crop.circle.badge.plus"],["two", "person.crop.circle.badge.plus"],["one", "person.crop.circle.badge.plus"],["one", "person.crop.circle.badge.plus"]]
-    let allPurposes = ["All", "Security","SmartHome","Hobby","Children","Other"]
+    let allPurposes = ["All","Security","SmartHome","Hobby","Children","Other"]
     var currentQuery = activity_Query.init(group_id: "4353j4lk5j34lkj5lk34j5", device_id: nil, category: nil)
     @State var showingInfoSheet = false
+    @StateObject var dataSource = SoundListDataSource()
     
     var body: some View {
         NavigationView {
             ScrollView{
                 ScrollView(.horizontal, showsIndicators: false){
                     HStack{
-                        ForEach(allCategories, id: \.self){card in
-                            CategoryCard(categoryName: card[0], categorySymbol: card[1])
+                        ForEach(allPurposes, id: \.self){card in
+                            CategoryCard(categoryName: card, categorySymbol: PurposeIcon.getIcon[card]!,alertsReceived: dataSource.alertsForCategory(category: card), devicesActive: 1, backgroundColor: PurposeColors.getColor[card]!)
                         }
                     }
                 }
@@ -53,15 +54,21 @@ struct ActivityView: View {
 struct CategoryCard: View {
     var categoryName:String
     var categorySymbol:String
+    var alertsReceived:Int
+    var devicesActive:Int
+    var backgroundColor:Color
+    
     var body: some View {
-        VStack{
+        VStack(alignment: .leading){
             HStack{
                 TitleViewLight(input: categoryName)
                 Spacer()
                 Image(systemName: categorySymbol).font(.title)
-            }
+            }.padding(.bottom)
+            ParagraphView(input: "Amount Of Alerts Received: \(alertsReceived)")
+            ParagraphView(input: "Amount Of Devices Active: \(devicesActive)")
             Spacer()
-        }.padding().frame(width: 300, height: 150, alignment: .leading).background(Color.white).cornerRadius(10.0).shadow(radius: 10.0).padding()
+        }.padding().frame(width: 300, height: 150, alignment: .leading).background(backgroundColor).cornerRadius(10.0).shadow(radius: 10.0).padding().foregroundColor(.white)
     }
 }
 struct ActivityView_Previews: PreviewProvider {
