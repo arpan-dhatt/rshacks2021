@@ -38,7 +38,7 @@ class PurposeColors {
 class CategoryColors {
     static var getColor: [String: Color] = [
         "Alert": Color.red,
-        "Info": Color.pink,
+        "Info": Color.green,
         "Other": Color.gray
     ]
 }

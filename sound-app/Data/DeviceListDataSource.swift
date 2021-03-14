@@ -35,4 +35,8 @@ class DeviceListDataSource: ObservableObject {
         }
         task.resume()
     }
+    
+    func loadFake() {
+        
+    }
 }

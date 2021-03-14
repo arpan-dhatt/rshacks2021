@@ -36,4 +36,12 @@ class SoundListDataSource: ObservableObject {
         }
         task.resume()
     }
+    
+    func loadFake() {
+        items = [
+            Sound(id: "3lkjlk2j4kl3", name: "Cough", device_name: "Vivek", device_id: "kjljkl23j4lkj", category: "Alert", wavFileURL: "https://github.com/JimLynchCodes/Game-Sound-Effects/raw/master/Sounds/Reminder.wav", waveFormBuffer: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]),
+            Sound(id: "3lkjlk2j4kl33lkjlk2j4kl3", name: "Sneeze", device_name: "Arpan", device_id: "kjljkl23j4lkj", category: "Info", wavFileURL: "https://github.com/JimLynchCodes/Game-Sound-Effects/raw/master/Sounds/VOLTAGE.WAV", waveFormBuffer: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]),
+            Sound(id: "3lkjlk2j4kl33lkjlk2j4kl33lkjlk2j4kl3", name: "Vomit", device_name: "Saaketh", device_id: "kjljkl23j4lkj", category: "Other", wavFileURL: "https://github.com/JimLynchCodes/Game-Sound-Effects/raw/master/Sounds/boodoodaloop.wav", waveFormBuffer: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]),
+        ]
+    }
 }

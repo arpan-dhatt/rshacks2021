@@ -35,26 +35,15 @@ struct OnboardingFirstTimeConfigureView: View {
                 SubtitleViewLight(input: "Location Of Device").padding(.top)
                 TextField("e.g. outside", text: $deviceLocation).padding().overlay(RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 1.5)).padding(.horizontal, 30)
                 SubtitleViewLight(input: "Purpose of Device").padding(.top)
-            
-//                Picker(selection: $devicePurposeUser, label:HStack{
-//                        Spacer()
-//                    ParagraphView(input: devicePurposeUser.rawValue.uppercased()).padding()
-//                    Image(systemName: "square.and.pencil")
-//                        Spacer()
-//                }.overlay(RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 1.5)).padding(.horizontal, 30)){
-//                    ForEach(devicePurpose.allCases){ purpose in
-//                        Text(purpose.rawValue).font(.title2).textCase(.uppercase).onTapGesture {
-//                            self.devicePurposeUser = purpose
-//                        }
-//                    }
-//                }.pickerStyle(MenuPickerStyle())
+
+                
                 Picker(devicePurpose, selection: $devicePurpose) {
                     ForEach(allPurposes, id: \.self) { purpose in
                         Text(purpose).frame(minWidth: 200)
                     }
-                }.pickerStyle(MenuPickerStyle()).frame(minWidth: 200)
+                }.pickerStyle(MenuPickerStyle()).frame(minWidth: 275).padding().overlay(RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 1.5))
                 
-            }.foregroundColor(.black)
+            }.foregroundColor(.black).multilineTextAlignment(.center)
             
             Button(action: {
                 withAnimation{
