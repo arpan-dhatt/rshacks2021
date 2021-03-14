@@ -14,7 +14,7 @@ struct RecordCard: View {
     
     var body: some View {
         
-        WaveFormPlayer(player: AVPlayer(url: URL(string: record.url)!), waveFormBuffer: record.waveFormBuffer, playerBackgroundColor: .white, waveFormColor: .blue, waveFormHighlightColor: .white).frame(height: 50)
+        WaveFormPlayer(player: AVPlayer(url: URL(string: record.url)!), waveFormBuffer: record.waveFormBuffer, playerBackgroundColor: .white, waveFormColor: .blue, waveFormHighlightColor: .white, minusButton: minusButtonClosure).frame(height: 50)
        
     }
 }

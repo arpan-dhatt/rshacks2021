@@ -14,25 +14,31 @@ struct RecorderMainPage: View {
     
     @State private var showingNextView = false
     
+    @State private var recordButtonColor: Color = .green
+    
     var body: some View {
         VStack {
             ScrollView {
-                VStack(spacing: 20) {
+                VStack(spacing: 5) {
                     ParagraphView(input: "Press the microphone and record the noise you want to train for detection").multilineTextAlignment(.center).padding()
-                    Text("8 Recordings Reccomended").font(.caption).padding(.bottom)
+                    Text("Minimum of 8 Recordings Recommended").font(.caption).padding(.bottom)
                     VStack{
                         ScrollView{
-                    ForEach(recorderState.recordings, id: \.id) { record in
-                        RecordCard(record: record, minusButtonClosure: {
-                            // remove this card
-                            self.recorderState.recordings.remove(at: self.recorderState.recordings.firstIndex(where: {rc in
-                                print(rc)
-                                return rc.id == record.id
-                            })!)
-                        })
-                
-                    }
-                        }
+                            ForEach(recorderState.recordings, id: \.id) { record in
+                                RecordCard(record: record, minusButtonClosure: {
+                                    // remove this card
+                                    self.recorderState.recordings.remove(at: self.recorderState.recordings.firstIndex(where: {rc in
+                                        print(rc)
+                                        // we need to tell server to get rid of this
+                                        if rc.id == record.id {
+                                            recorderState.ONE_SECOND_DELETE_Outbound(data: ONE_SECOND_DELETE_Outbound(id: rc.id))
+                                        }
+                                        // now we delete it client side
+                                        return rc.id == record.id
+                                    })!)
+                                })
+                            }
+                        }.scaledToFill()
                     }
                 }.navigationBarTitle(recorderState.device_in_use?.name ?? "Device Name").navigationBarBackButtonHidden(true)
             }
@@ -40,7 +46,7 @@ struct RecorderMainPage: View {
                 Button(action: {
                     
                 }, label: {
-                    Image(systemName: "mic.circle").font(.system(size: 85,weight: .ultraLight)).padding(.horizontal, 50).foregroundColor(.green)
+                    Image(systemName: "mic.circle").font(.system(size: 85,weight: .ultraLight)).padding(.horizontal, 50).foregroundColor(recordButtonColor)
                 })
                 
                 Button(action: {
@@ -63,7 +69,21 @@ struct RecorderMainPage: View {
             }
         }.onAppear {
             recorderState.loadFake()
-        }
+        }.onChange(of: recorderState.recording_status, perform: { value in
+            // this will change the color of the button depending on the state
+            switch value {
+            case nil:
+                recordButtonColor = .green
+            case "start":
+                recordButtonColor = .gray
+            case "started":
+                recordButtonColor = .red
+            case "complete":
+                recordButtonColor = .blue; DispatchQueue.main.async { recordButtonColor = .green }
+            default:
+                recordButtonColor = .green
+            }
+        })
     }
 }
 
