@@ -31,6 +31,13 @@ struct Record: Identifiable {
     var waveFormBuffer: [Float]
 }
 
+struct AvailibleSound: Identifiable,Hashable {
+    var id = UUID()
+    var name: String
+    var category: String
+    var description: String
+}
+
 // this can be accessed globally e.g.: PurposeColors.getColor["Emergencies"]
 class PurposeColors {
     static var getColor: [String: LinearGradient] = [

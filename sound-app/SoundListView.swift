@@ -22,6 +22,7 @@ struct SoundListView: View {
                 }
             }.onAppear(perform: {
                 //self.dataSource.loadData(query: self.query)
+                print(query)
                 self.dataSource.loadFake(query: self.query)
             })
         }

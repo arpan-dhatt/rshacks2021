@@ -18,10 +18,12 @@ enum ActiveSheet: Identifiable {
 struct DevicesView: View {
     @State var activeSheet: ActiveSheet?
     
+    @AppStorage("group_id") var group_id = "NONE"
+    
     var body: some View {
         NavigationView{
             ScrollView{
-                DeviceListView(query: devices_Query(group_id: "afkjlsdkj23lkj2lkj23"))
+                DeviceListView(query: devices_Query(group_id: group_id))
                 
                 HStack{
                     Button(action: {
@@ -70,7 +72,8 @@ struct DevicesView: View {
 
 struct DevicePageView: View {
     var device: Device
-    var currentQuery = activity_Query.init(group_id: "4353j4lk5j34lkj5lk34j5", device_id: nil, category: nil)
+    
+    @AppStorage("group_id") var group_id = "NONE"
     
     var body: some View{
         ScrollView{
@@ -112,7 +115,7 @@ struct DevicePageView: View {
                 Spacer()
             }.padding()
             
-            SoundListView(query: activity_Query.init(group_id: "4353j4lk5j34lkj5lk34j5", device_id: device.id, category: nil))
+            SoundListView(query: activity_Query.init(group_id: group_id, device_id: device.id, category: nil))
             
         }
     }
