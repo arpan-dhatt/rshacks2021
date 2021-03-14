@@ -25,6 +25,7 @@
 		782E4C5025EAFFA70018B20D /* DeviceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782E4C4F25EAFFA70018B20D /* DeviceCard.swift */; };
 		782E4C5225EB01310018B20D /* RecordingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782E4C5125EB01310018B20D /* RecordingState.swift */; };
 		782E4C5425EB07BE0018B20D /* RecordCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782E4C5325EB07BE0018B20D /* RecordCard.swift */; };
+		782E4C5625EC227A0018B20D /* ShareSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782E4C5525EC227A0018B20D /* ShareSheetView.swift */; };
 		78339A9225EAA31600379D54 /* SoundCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78339A9125EAA31600379D54 /* SoundCard.swift */; };
 		78339A9525EAAFBE00379D54 /* WebSocketTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78339A9425EAAFBE00379D54 /* WebSocketTypes.swift */; };
 		78339A9725EAB01B00379D54 /* RESTfulTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78339A9625EAB01B00379D54 /* RESTfulTypes.swift */; };
@@ -64,6 +65,7 @@
 		782E4C4F25EAFFA70018B20D /* DeviceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCard.swift; sourceTree = "<group>"; };
 		782E4C5125EB01310018B20D /* RecordingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingState.swift; sourceTree = "<group>"; };
 		782E4C5325EB07BE0018B20D /* RecordCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCard.swift; sourceTree = "<group>"; };
+		782E4C5525EC227A0018B20D /* ShareSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetView.swift; sourceTree = "<group>"; };
 		78339A9125EAA31600379D54 /* SoundCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCard.swift; sourceTree = "<group>"; };
 		78339A9425EAAFBE00379D54 /* WebSocketTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketTypes.swift; sourceTree = "<group>"; };
 		78339A9625EAB01B00379D54 /* RESTfulTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTfulTypes.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				6EBBF62A25EB169100112F44 /* GroupInfoModal.swift */,
 				782E4C5325EB07BE0018B20D /* RecordCard.swift */,
 				6E38F14A25EC16F3002FCC3A /* NewDeviceView.swift */,
+				782E4C5525EC227A0018B20D /* ShareSheetView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 			files = (
 				78339A9D25EAB76200379D54 /* Model.swift in Sources */,
 				78B8500725EA22AA00FDEDBE /* DevicesView.swift in Sources */,
+				782E4C5625EC227A0018B20D /* ShareSheetView.swift in Sources */,
 				7848439525EA013C00916547 /* ContentView.swift in Sources */,
 				784843A325EA18E000916547 /* BrowseView.swift in Sources */,
 				78339A9B25EAB45100379D54 /* NetConfig.swift in Sources */,

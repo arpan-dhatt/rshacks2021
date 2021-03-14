@@ -21,7 +21,7 @@ struct BrowseView: View {
             }.navigationBarTitle("Browse").navigationBarItems(trailing: Button(action: {
                 // will show and let you copy group id
             }, label: {
-                Image(systemName: "person.crop.circle").resizable().frame(width: 30, height: 30)
+                Image(systemName: "person.crop.circle.badge.plus").resizable().frame(width: 40, height: 34).foregroundColor(.black)
             }))
         }
     }

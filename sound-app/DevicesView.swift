@@ -47,12 +47,12 @@ struct DevicesView: View {
                     })
                 }
                 
-            }.navigationBarTitle("Activity").navigationBarItems(trailing: Button(action: {
+            }.navigationBarTitle("Devices").navigationBarItems(trailing: Button(action: {
                 withAnimation{
                     activeSheet = .infoSheet
                 }
             }, label: {
-                Image(systemName: "person.crop.circle.badge.plus").resizable().frame(width: 40, height: 30).foregroundColor(.black)
+                Image(systemName: "person.crop.circle.badge.plus").resizable().frame(width: 40, height: 34).foregroundColor(.black)
             })).sheet(item: $activeSheet, content: { item in
                 switch item {
                 case .infoSheet:

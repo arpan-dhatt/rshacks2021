@@ -2,7 +2,7 @@
 //  NewDeviceView.swift
 //  sound-app
 //
-//  Created by user175571 on 2/28/21.
+//  Created by SaakethC on 3/14/21.
 //
 
 import SwiftUI

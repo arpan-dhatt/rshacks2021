@@ -49,7 +49,7 @@ struct ActivityView: View {
                     showingInfoSheet.toggle()
                 }
             }, label: {
-                Image(systemName: "person.crop.circle.badge.plus").resizable().frame(width: 40, height: 30).foregroundColor(.black)
+                Image(systemName: "person.crop.circle.badge.plus").resizable().frame(width: 40, height: 34).foregroundColor(.black)
             })).sheet(isPresented: $showingInfoSheet, content: {
                 GroupInfoModal()
             })
