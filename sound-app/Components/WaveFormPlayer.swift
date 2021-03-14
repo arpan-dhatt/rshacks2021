@@ -46,7 +46,7 @@ struct WaveFormPlayer: View {
                     }
                 }.padding(.vertical, 8).padding(.trailing, minusButton == nil ? 15 : 0)
                 if let minusButtonClosure = minusButton {
-                    Image(systemName: "minus.circle.fill").resizable().padding(3).frame(width: 40, height: 40).onTapGesture(perform: minusButtonClosure).foregroundColor(.red)
+                    Image(systemName: "minus.circle.fill").resizable().padding(3).frame(width: 20, height: 20).onTapGesture(perform: minusButtonClosure).foregroundColor(.red)
                 }
             }.background(playerBackgroundColor).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous)).frame(width: geom.size.width)
         }.onReceive(timer) {input in

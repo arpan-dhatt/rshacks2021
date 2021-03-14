@@ -2,7 +2,7 @@
 //  RecordCard.swift
 //  sound-app
 //
-//  Created by Arpan Dhatt on 2/27/21.
+//  Created by Arpan Dhatt on 3/13/21.
 //
 
 import SwiftUI
@@ -13,9 +13,9 @@ struct RecordCard: View {
     var minusButtonClosure: () -> Void
     
     var body: some View {
-        HStack {
-            WaveFormPlayer(player: AVPlayer(url: URL(string: record.url)!), waveFormBuffer: record.waveFormBuffer, playerBackgroundColor: .white, waveFormColor: .blue, waveFormHighlightColor: .white, minusButton: minusButtonClosure)
-        }.frame(height: 50)
+        
+        WaveFormPlayer(player: AVPlayer(url: URL(string: record.url)!), waveFormBuffer: record.waveFormBuffer, playerBackgroundColor: .white, waveFormColor: .blue, waveFormHighlightColor: .white, minusButton: minusButtonClosure).frame(height: 50)
+       
     }
 }
 

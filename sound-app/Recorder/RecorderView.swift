@@ -10,6 +10,7 @@ import SwiftUI
 struct RecorderView: View {
     @StateObject var dataSource = DeviceListDataSource()
     @StateObject var recorderState = RecordingStateObject()
+    @AppStorage("group_id") var group_id = "NONE"
     @Binding var isPresented: Bool
     
     @State private var showingNextView = false
@@ -19,31 +20,40 @@ struct RecorderView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Image(systemName: "mic.circle").resizable().scaledToFit().padding(.horizontal, 50)
-                TitleViewBold(input: "Select Device to Record From").multilineTextAlignment(.center)
-                VStack {
+                Image(systemName: "mic.circle").font(.system(size: 200, weight: .ultraLight)).padding(.vertical)
+                SubtitleViewBold(input: "Select A Device to Record From").multilineTextAlignment(.center).padding(.vertical)
+                VStack{
+                ScrollView{
                     ForEach(dataSource.items, id: \.id) { device in
                         if selectedDevice == device.name {
-                            ParagraphView(input: device.name).padding(8).background(Color.black).foregroundColor(.white)
+                            HStack{
+                                ParagraphView(input: device.name).padding(10).frame(width: 200).background(Color.black).cornerRadius(10.0).foregroundColor(.white).shadow(radius: 5).padding(5)
+                            }
                         }
                         else {
-                            ParagraphView(input: device.name).padding(8).background(Color.white).foregroundColor(.black).onTapGesture {
+                            HStack{
+                                ParagraphView(input: device.name).padding(10).frame(width: 200).background(Color.white).cornerRadius(10.0).foregroundColor(.black).shadow(radius: 5).padding(5).onTapGesture {
                                 withAnimation {
                                     selectedDevice = device.name
                                     recorderState.device_in_use = device
                                 }
                             }
+                            }
                         }
                     }
-                }.scaledToFill()
+                }
+                }
                 Button(action: {
-                    //next in recorder
-                    showingNextView = true
+                    // tell server to prime a device
+                    recorderState.SESSION_BEGIN_OutboundF(data: SESSION_BEGIN_Outbound(group_id: group_id, device_id: recorderState.device_in_use!.id))
+                    print("waiting for server")
+                    //next in recorder doesn't start until session status has returned from server
+//                    showingNextView = true
                 }, label: {
                     HStack{
                         SubtitleView(input: "Continue")
                         Image(systemName: "arrow.right").font(.title)
-                    }.padding(25).background(selectedDevice == "" ? Color.gray : Color.black).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
+                    }.padding(20).background(selectedDevice == "" ? Color.gray : Color.green).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
                 }).padding().disabled(selectedDevice == "")
                 NavigationLink(
                     destination: RecorderMainPage(isPresented: $isPresented).environmentObject(recorderState).navigationBarBackButtonHidden(true),
@@ -51,9 +61,14 @@ struct RecorderView: View {
                     label: {
                         EmptyView()
                     })
-            }.navigationBarTitle("Create Sound").onAppear(perform: {
+            }.navigationBarTitle("Add Sound").onAppear(perform: {
                 dataSource.loadFake()
-            }).navigationBarBackButtonHidden(true)
+            }).navigationBarBackButtonHidden(true).onChange(of: recorderState.session_status, perform: { value in
+                // when server says it's ok, change state
+                if recorderState.session_status == "ready" {
+                    self.showingNextView = true
+                }
+            })
         }
     }
 }
