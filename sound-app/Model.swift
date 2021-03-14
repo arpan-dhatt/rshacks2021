@@ -42,12 +42,3 @@ class CategoryColors {
         "Other": Color.gray
     ]
 }
-
-// data that stores the onboarding processes
-class OnboardingFirstTimeData: ObservableObject {
-    @Published var new_device_id: String?
-    @Published var new_device_name: String?
-    @Published var location: String?
-    @Published var purpose: String?
-    @Published var group_id: String?
-}

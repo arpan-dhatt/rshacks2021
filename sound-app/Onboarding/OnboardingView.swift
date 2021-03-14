@@ -11,13 +11,11 @@ enum OnboardingViewEnum {
     case intro
     case firstTime
     case joinGroup
-    case firstTimeConfigure
+    case fistTimeConfigure
 }
 
 struct OnboardingView: View {
     @State private var currentOnboardingView: OnboardingViewEnum = .intro
-    
-    @EnvironmentObject var onboardingFirstTime: OnboardingFirstTimeData
     
     var body: some View {
         if currentOnboardingView == .intro {
@@ -29,14 +27,14 @@ struct OnboardingView: View {
         if currentOnboardingView == .joinGroup {
             OnboardingJoinView(currentOnboardingView: $currentOnboardingView).animation(.easeInOut)
         }
-        if currentOnboardingView == .firstTimeConfigure {
-            OnboardingFirstTimeConfigureView(currentOnboardingView: $currentOnboardingView).animation(.easeInOut)
+        if currentOnboardingView == .fistTimeConfigure {
+            OnboardingFirstTimeConfigureView(currentOnboardingView: $currentOnboardingView)
         }
     }
 }
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView().environmentObject(OnboardingFirstTimeData())
+        OnboardingView()
     }
 }

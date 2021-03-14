@@ -21,11 +21,11 @@ struct SoundCard: View {
                     Text("\(sound.device_name) • \(sound.category)")
                 }.padding(.vertical)
                 Spacer()
-                Image(systemName: "hand.thumbsup").resizable().scaledToFit().frame(maxHeight: 30).padding(4)
-                Image(systemName: "hand.thumbsdown").resizable().scaledToFit().frame(maxHeight: 30).padding(4)
+                Image(systemName: "checkmark.circle").resizable().scaledToFit().frame(maxHeight: 40).padding(4)
+                Image(systemName: "xmark.circle").resizable().scaledToFit().frame(maxHeight: 40).padding(4)
             }.padding(.horizontal)
             WaveFormPlayer(player: AVPlayer(url: URL(string: sound.wavFileURL)!), waveFormBuffer: sound.waveFormBuffer, waveFormColor: CategoryColors.getColor[sound.category] ?? .blue, waveFormHighlightColor: .white)
-        }.background(Color.white).frame(height:150).clipShape(RoundedRectangle(cornerRadius: 25.0, style: .continuous)).shadow(radius: 3)
+        }.padding(.horizontal).padding(.vertical, 10).background(Color.white).clipShape(RoundedRectangle(cornerRadius: 25.0, style: .continuous)).shadow(radius: 3).scaledToFit()
     }
 }
 

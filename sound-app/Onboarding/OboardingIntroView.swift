@@ -11,8 +11,6 @@ struct OnboardingIntroView: View {
     
     @Binding var currentOnboardingView: OnboardingViewEnum
     
-    @EnvironmentObject var onboardingFirstTime: OnboardingFirstTimeData
-    
     var body: some View {
         VStack{
             SubtitleView(input: "Welcome To")
