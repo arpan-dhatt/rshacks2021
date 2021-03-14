@@ -48,7 +48,7 @@ struct WaveFormPlayer: View {
                 if let minusButtonClosure = minusButton {
                     Image(systemName: "minus.circle.fill").resizable().padding(3).frame(width: 50, height: 50).onTapGesture(perform: minusButtonClosure).foregroundColor(.red)
                 }
-            }.background(playerBackgroundColor).clipShape(RoundedRectangle(cornerRadius: 100, style: .continuous)).frame(width: geom.size.width)
+            }.background(playerBackgroundColor).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous)).frame(width: geom.size.width)
         }.onReceive(timer) {input in
             if timerActive { updateHighlightColor(time: player?.currentItem?.currentTime(), duration: player?.currentItem?.duration) }
         }.animation(.easeIn(duration: 0.25))
