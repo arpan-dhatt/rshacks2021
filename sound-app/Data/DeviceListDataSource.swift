@@ -38,9 +38,22 @@ class DeviceListDataSource: ObservableObject {
     
     func loadFake() {
         items = [
-            Device(id: "lwjkl23kj42lk3j", name: "Arpan", activeSounds: ["Hello"], location: "Outside", purpose: "Emergencies"),
-            Device(id: "3l2jkl2kj", name: "Vivek", activeSounds: ["Hello"], location: "Inside", purpose: "Children"),
+            Device(id: "lwjkl23kj42lk3j", name: "Arpan", activeSounds: ["Hello"], location: "Outside", purpose: "SmartHome"),
+            Device(id: "3l2jkl2kj", name: "Vivek", activeSounds: ["Hello"], location: "Inside", purpose: "Security"),
             Device(id: "kljlk32jl23k", name: "Saaketh", activeSounds: ["Hello"], location: "Midside", purpose: "Other")
         ]
+    }
+    
+    func devicesForCategory(category:String) -> Int {
+        var count  = 0
+        if category == "All"{
+            return items.count
+        }
+        for item in items {
+            if item.purpose == category {
+                count+=1
+            }
+        }
+        return count
     }
 }

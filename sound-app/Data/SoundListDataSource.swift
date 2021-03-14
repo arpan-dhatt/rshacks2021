@@ -47,6 +47,9 @@ class SoundListDataSource: ObservableObject {
     
     func alertsForCategory(category:String) -> Int {
         var count  = 0
+        if category == "All"{
+            return items.count
+        }
         for item in items {
             if item.category == category {
                 count+=1

@@ -13,6 +13,7 @@ struct ActivityView: View {
     var currentQuery = activity_Query.init(group_id: "4353j4lk5j34lkj5lk34j5", device_id: nil, category: nil)
     @State var showingInfoSheet = false
     @StateObject var dataSource = SoundListDataSource()
+    @StateObject var deviceDataSource = DeviceListDataSource()
     
     var body: some View {
         NavigationView {
@@ -20,9 +21,12 @@ struct ActivityView: View {
                 ScrollView(.horizontal, showsIndicators: false){
                     HStack{
                         ForEach(allPurposes, id: \.self){card in
-                            CategoryCard(categoryName: card, categorySymbol: PurposeIcon.getIcon[card]!,alertsReceived: dataSource.alertsForCategory(category: card), devicesActive: 1, backgroundColor: PurposeColors.getColor[card]!)
+                            CategoryCard(categoryName: card, categorySymbol: PurposeIcon.getIcon[card]!,alertsReceived: dataSource.alertsForCategory(category: card), devicesActive: deviceDataSource.devicesForCategory(category: card), backgroundColor: PurposeColors.getColor[card]!)
                         }
-                    }
+                    }.onAppear(perform: {
+                        dataSource.loadFake()
+                        deviceDataSource.loadFake()
+                    })
                 }
                 ScrollView(.horizontal, showsIndicators: false){
                     HStack{

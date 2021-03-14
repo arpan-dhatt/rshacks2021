@@ -1,19 +1,14 @@
 //
-//  OnboardingFirstTimeView.swift
+//  NewDeviceView.swift
 //  sound-app
 //
-//  Created by SaakethC on 3/13/21.
+//  Created by user175571 on 2/28/21.
 //
 
 import SwiftUI
 import CodeScanner
 
-struct OnboardingFirstTimeView: View {
-    
-    @Binding var currentOnboardingView: OnboardingViewEnum
-    
-    @EnvironmentObject var onboardingFirstTime: OnboardingFirstTimeData
-    
+struct NewDeviceView: View {
     @State private var isShowingScanner = false
     
     var body: some View {
@@ -42,17 +37,15 @@ struct OnboardingFirstTimeView: View {
         self.isShowingScanner = false
         if let str = try? result.get() {
             DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
-                self.currentOnboardingView = .firstTimeConfigure
             })
-            self.onboardingFirstTime.new_device_id = str
             print(str)
             Postman.shared.create_group()
         }
     }
 }
 
-struct OnboardingFirstTimeView_Previews: PreviewProvider {
+struct NewDeviceView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingFirstTimeView(currentOnboardingView: .constant(.firstTime))
+        NewDeviceView()
     }
 }

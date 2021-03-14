@@ -10,6 +10,7 @@ import SwiftUI
 struct DevicesView: View {
     @State var showingInfoSheet = false
     @State var showingNewSound = false
+    @State var showingNewDevice = false
     
     var body: some View {
         NavigationView{
@@ -30,7 +31,7 @@ struct DevicesView: View {
                     })
                     Button(action: {
                         withAnimation{
-                            
+                            showingNewDevice.toggle()
                         }
                     }, label: {
                         HStack{
@@ -48,7 +49,7 @@ struct DevicesView: View {
                 Image(systemName: "person.crop.circle.badge.plus").resizable().frame(width: 40, height: 30).foregroundColor(.black)
             })).sheet(isPresented: $showingInfoSheet, content: {
                 GroupInfoModal()
-            }).sheet(isPresented: $showingNewSound, content: {RecorderView(isPresented: $showingNewSound)})
+            }).sheet(isPresented: $showingNewSound, content: {RecorderView(isPresented: $showingNewSound)}).sheet(isPresented: $showingNewDevice, content: {NewDeviceView()})
         }
     }
 }
