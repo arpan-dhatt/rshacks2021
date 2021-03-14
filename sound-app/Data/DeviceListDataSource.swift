@@ -27,11 +27,12 @@ class DeviceListDataSource: ObservableObject {
                     self.items.removeAll()
                     for ri in json_data.devices_list {
                         self.items.append(
-                            Device(id: ri.device_id, name: ri.name, activeSounds: [], location: ri.location, purpose: ri.category)
+                            Device(id: ri.device_id, name: ri.name, activeSounds: [], location: ri.location, purpose: ri.purpose)
                         )
                     }
                 }
             }
         }
+        task.resume()
     }
 }

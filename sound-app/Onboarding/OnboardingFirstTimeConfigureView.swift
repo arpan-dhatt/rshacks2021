@@ -15,7 +15,9 @@ struct OnboardingFirstTimeConfigureView: View {
     
     @State var deviceName = ""
     @State var deviceLocation = ""
-    @State var devicePurposeUser: devicePurpose = .smartHome
+    @State var devicePurpose: String = "Other"
+    
+    let allPurposes = ["Security","SmartHome","Hobby","Children","Other"]
     
     var body: some View {
         VStack{
@@ -32,18 +34,25 @@ struct OnboardingFirstTimeConfigureView: View {
                 TextField("name", text: $deviceName).padding().overlay(RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 1.5)).padding(.horizontal, 30)
                 SubtitleViewLight(input: "Location Of Device").padding(.top)
                 TextField("e.g. outside", text: $deviceLocation).padding().overlay(RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 1.5)).padding(.horizontal, 30)
-                SubtitleViewLight(input: "Purpose Of Device").padding(.top)
+                SubtitleViewLight(input: "Purpose of Device").padding(.top)
             
-                Picker(selection: $devicePurposeUser, label:HStack{
-                        Spacer()
-                    ParagraphView(input: devicePurposeUser.rawValue.uppercased()).padding()
-                    Image(systemName: "square.and.pencil")
-                        Spacer()
-                }.overlay(RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 1.5)).padding(.horizontal, 30)){
-                    ForEach(devicePurpose.allCases){
-                            Text($0.rawValue).font(.title2).textCase(.uppercase)
-                        }
-                    }.pickerStyle(MenuPickerStyle())
+//                Picker(selection: $devicePurposeUser, label:HStack{
+//                        Spacer()
+//                    ParagraphView(input: devicePurposeUser.rawValue.uppercased()).padding()
+//                    Image(systemName: "square.and.pencil")
+//                        Spacer()
+//                }.overlay(RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 1.5)).padding(.horizontal, 30)){
+//                    ForEach(devicePurpose.allCases){ purpose in
+//                        Text(purpose.rawValue).font(.title2).textCase(.uppercase).onTapGesture {
+//                            self.devicePurposeUser = purpose
+//                        }
+//                    }
+//                }.pickerStyle(MenuPickerStyle())
+                Picker(devicePurpose, selection: $devicePurpose) {
+                    ForEach(allPurposes, id: \.self) { purpose in
+                        Text(purpose).frame(minWidth: 200)
+                    }
+                }.pickerStyle(MenuPickerStyle()).frame(minWidth: 200)
                 
             }.foregroundColor(.black)
             
@@ -71,7 +80,7 @@ struct OnboardingFirstTimeConfigureView_Previews: PreviewProvider {
     }
 }
 
-enum devicePurpose: String, CaseIterable, Identifiable {
+enum devicePurposes: String, CaseIterable, Identifiable, Equatable {
     case security = "Security"
     case smartHome = "SmartHome"
     case hobby = "Hobby"

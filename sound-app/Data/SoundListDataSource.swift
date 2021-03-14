@@ -13,7 +13,7 @@ class SoundListDataSource: ObservableObject {
     @Published var items = [Sound]()
     
     private func formURL(_ query: activity_Query) -> URL {
-        return URL(string: NetConfig.URL_ROOT+"?group_id=\(query.group_id)&device_id=\(query.device_id ?? "nil")&category=\(query.category ?? "nil")&")!
+        return URL(string: NetConfig.URL_ROOT+"?group_id=\(query.group_id)&device_id=\(query.device_id ?? "nil")&category=\(query.category ?? "nil")")!
     }
     
     func loadData(query: activity_Query) {
@@ -34,5 +34,6 @@ class SoundListDataSource: ObservableObject {
                 }
             }
         }
+        task.resume()
     }
 }
