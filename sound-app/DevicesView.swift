@@ -7,10 +7,16 @@
 
 import SwiftUI
 
+enum ActiveSheet: Identifiable {
+    case infoSheet, newSound, newDevice
+    
+    var id: Int {
+        hashValue
+    }
+}
+
 struct DevicesView: View {
-    @State var showingInfoSheet = false
-    @State var showingNewSound = false
-    @State var showingNewDevice = false
+    @State var activeSheet: ActiveSheet?
     
     var body: some View {
         NavigationView{
@@ -20,7 +26,7 @@ struct DevicesView: View {
                 HStack{
                     Button(action: {
                         withAnimation{
-                            showingNewSound.toggle()
+                            activeSheet = .newSound
                         }
                         
                     }, label: {
@@ -31,7 +37,7 @@ struct DevicesView: View {
                     })
                     Button(action: {
                         withAnimation{
-                            showingNewDevice.toggle()
+                            activeSheet = .newDevice
                         }
                     }, label: {
                         HStack{
@@ -43,13 +49,21 @@ struct DevicesView: View {
                 
             }.navigationBarTitle("Activity").navigationBarItems(trailing: Button(action: {
                 withAnimation{
-                    showingInfoSheet.toggle()
+                    activeSheet = .infoSheet
                 }
             }, label: {
                 Image(systemName: "person.crop.circle.badge.plus").resizable().frame(width: 40, height: 30).foregroundColor(.black)
-            })).sheet(isPresented: $showingInfoSheet, content: {
-                GroupInfoModal()
-            }).sheet(isPresented: $showingNewSound, content: {RecorderView(isPresented: $showingNewSound)}).sheet(isPresented: $showingNewDevice, content: {NewDeviceView()})
+            })).sheet(item: $activeSheet, content: { item in
+                switch item {
+                case .infoSheet:
+                    GroupInfoModal()
+                case .newSound:
+                    RecorderView(presenting: $activeSheet)
+                case .newDevice:
+                    NewDeviceView()
+                }
+                
+            })
         }
     }
 }

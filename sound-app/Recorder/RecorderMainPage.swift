@@ -10,7 +10,7 @@ import AVKit
 
 struct RecorderMainPage: View {
     @EnvironmentObject var recorderState: RecordingStateObject
-    @Binding var isPresented: Bool
+    @Binding var presenting: ActiveSheet?
     
     @State private var showingNextView = false
     
@@ -60,7 +60,7 @@ struct RecorderMainPage: View {
                     }.padding(20).background(Color.black).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
                 }).padding().transition(.slide).padding(.top).disabled(recorderState.recordings.count < 5)
                 NavigationLink(
-                    destination: RecorderFinalPage(isPresented: $isPresented).navigationBarBackButtonHidden(true),
+                    destination: RecorderFinalPage(presenting: $presenting).navigationBarBackButtonHidden(true),
                     isActive: $showingNextView,
                     label: {
                         EmptyView()
@@ -71,6 +71,7 @@ struct RecorderMainPage: View {
             recorderState.loadFake()
         }.onChange(of: recorderState.recording_status, perform: { value in
             // this will change the color of the button depending on the state
+            print(recorderState.recording_status)
             switch value {
             case nil:
                 recordButtonColor = .green
@@ -90,7 +91,7 @@ struct RecorderMainPage: View {
 struct RecorderMainPage_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            RecorderMainPage(isPresented: .constant(true)).environmentObject(RecordingStateObject())
+            RecorderMainPage(presenting: .constant(.newSound)).environmentObject(RecordingStateObject())
         }
     }
 }

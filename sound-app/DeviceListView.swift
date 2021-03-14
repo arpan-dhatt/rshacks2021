@@ -10,6 +10,7 @@ import SwiftUI
 struct DeviceListView: View {
     
     @StateObject var dataSource = DeviceListDataSource()
+    @AppStorage("group_id") var group_id = "NONE"
     
     // query is a struct which's data will be sent to server when dataSource.loadData(query) is called
     var query: devices_Query
@@ -22,7 +23,7 @@ struct DeviceListView: View {
                 }
             }
         }.onAppear(perform: {
-            self.dataSource.loadFake()
+            self.dataSource.loadFake(query: devices_Query(group_id: group_id))
         })
     }
 }

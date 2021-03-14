@@ -15,6 +15,8 @@ struct ActivityView: View {
     @StateObject var dataSource = SoundListDataSource()
     @StateObject var deviceDataSource = DeviceListDataSource()
     
+    @AppStorage("group_id") var group_id = "NONE"
+    
     var body: some View {
         NavigationView {
             ScrollView{
@@ -25,7 +27,7 @@ struct ActivityView: View {
                         }
                     }.onAppear(perform: {
                         dataSource.loadFake()
-                        deviceDataSource.loadFake()
+                        deviceDataSource.loadFake(query: devices_Query(group_id: group_id))
                     })
                 }
                 ScrollView(.horizontal, showsIndicators: false){

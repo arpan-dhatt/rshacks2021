@@ -11,7 +11,7 @@ struct RecorderView: View {
     @StateObject var dataSource = DeviceListDataSource()
     @StateObject var recorderState = RecordingStateObject()
     @AppStorage("group_id") var group_id = "NONE"
-    @Binding var isPresented: Bool
+    @Binding var presenting: ActiveSheet?
     
     @State private var showingNextView = false
     
@@ -56,13 +56,13 @@ struct RecorderView: View {
                     }.padding(20).background(selectedDevice == "" ? Color.gray : Color.green).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
                 }).padding().disabled(selectedDevice == "")
                 NavigationLink(
-                    destination: RecorderMainPage(isPresented: $isPresented).environmentObject(recorderState).navigationBarBackButtonHidden(true),
+                    destination: RecorderMainPage(presenting: $presenting).environmentObject(recorderState).navigationBarBackButtonHidden(true),
                     isActive: $showingNextView,
                     label: {
                         EmptyView()
                     })
             }.navigationBarTitle("Add Sound").onAppear(perform: {
-                dataSource.loadFake()
+                dataSource.loadFake(query: devices_Query(group_id: group_id))
             }).navigationBarBackButtonHidden(true).onChange(of: recorderState.session_status, perform: { value in
                 // when server says it's ok, change state
                 if recorderState.session_status == "ready" {
@@ -75,6 +75,6 @@ struct RecorderView: View {
 
 struct RecorderView_Previews: PreviewProvider {
     static var previews: some View {
-        RecorderView(isPresented: .constant(false))
+        RecorderView(presenting: .constant(.newSound))
     }
 }

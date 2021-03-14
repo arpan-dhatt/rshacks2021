@@ -18,7 +18,7 @@ class DeviceListDataSource: ObservableObject {
     func loadData(query: devices_Query) {
         let url = formURL(query)
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+        request.httpMethod = "GET"
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data else { return }
             let response_data = try? JSONDecoder().decode(devices_Response.self, from: data)
@@ -36,12 +36,13 @@ class DeviceListDataSource: ObservableObject {
         task.resume()
     }
     
-    func loadFake() {
+    func loadFake(query: devices_Query) {
         items = [
             Device(id: "lwjkl23kj42lk3j", name: "Arpan", activeSounds: ["Hello"], location: "Outside", purpose: "SmartHome"),
             Device(id: "3l2jkl2kj", name: "Vivek", activeSounds: ["Hello"], location: "Inside", purpose: "Security"),
             Device(id: "kljlk32jl23k", name: "Saaketh", activeSounds: ["Hello"], location: "Midside", purpose: "Other")
         ]
+        loadData(query: query)
     }
     
     func devicesForCategory(category:String) -> Int {

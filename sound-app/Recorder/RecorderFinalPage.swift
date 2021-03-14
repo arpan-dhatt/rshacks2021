@@ -9,9 +9,11 @@ import SwiftUI
 
 struct RecorderFinalPage: View {
     @EnvironmentObject var recorderState: RecordingStateObject
-    @Binding var isPresented: Bool
+    @Binding var presenting: ActiveSheet?
     
     @StateObject var dataSource = DeviceListDataSource()
+    
+    @AppStorage("group_id") var group_id = "NONE"
     
     @State private var sound_name = ""
     @State private var sound_category = "Other"
@@ -52,7 +54,7 @@ struct RecorderFinalPage: View {
                     // tell server all the final information it needs
                     let output = SESSION_END_Outbound(name: sound_name, category: sound_category, device_ids: [selectedDeviceId])
                     recorderState.SESSION_END_Outbound(data: output)
-                    isPresented = false
+                    presenting = nil
                 }
             }, label: {
                 HStack{
@@ -61,7 +63,7 @@ struct RecorderFinalPage: View {
                 }.padding(20).background(Color.black).cornerRadius(50.0).foregroundColor(.white).shadow(radius: 10.0)
             }).padding().transition(.slide).padding(.top)
         }.navigationBarTitle("Almost Done").onAppear {
-            dataSource.loadFake()
+            dataSource.loadFake(query: devices_Query(group_id: group_id))
         }
     }
 }
@@ -69,7 +71,7 @@ struct RecorderFinalPage: View {
 struct RecorderFinalPage_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            RecorderFinalPage(isPresented: .constant(true)).environmentObject(RecordingStateObject())
+            RecorderFinalPage(presenting: .constant(.newSound)).environmentObject(RecordingStateObject())
         }
     }
 }
