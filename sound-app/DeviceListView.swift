@@ -17,7 +17,9 @@ struct DeviceListView: View {
     var body: some View {
         VStack {
             ForEach(dataSource.items, id: \.id) { device in
-                DeviceCard(device: device)
+                NavigationLink(destination: DevicePageView(device: device)){
+                    DeviceCard(device: device)
+                }
             }
         }.onAppear(perform: {
             self.dataSource.loadFake()

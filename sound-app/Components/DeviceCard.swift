@@ -18,11 +18,14 @@ struct DeviceCard: View {
                 Image(systemName: "ellipsis.circle.fill").font(.title)
             }
             HStack(alignment: .top){
+                HStack{
                 VStack(alignment: .leading){
                     TitleViewBold(input: device.name)
                     SubtitleViewLight(input: device.purpose)
                     ParagraphView(input: device.location)
-                }.padding(.trailing)
+                }
+                    Spacer()
+                }.frame(width: 150).padding(.trailing)
                 
                 VStack(alignment:.leading){
                     if device.activeSounds.count == 0{
@@ -45,7 +48,7 @@ struct DeviceCard: View {
                             Image(systemName: "arrow.right")
                         }
                     }
-                }.padding(.leading)
+                }
             }
             
         }.padding().frame(height: 175).background(PurposeColors.getColor[device.purpose] ?? Color.green).cornerRadius(10.0).padding(.horizontal).padding(.vertical, 10).shadow(radius: 10).foregroundColor(.white)

@@ -25,7 +25,7 @@ struct SoundCard: View {
                 Image(systemName: "xmark.circle").resizable().scaledToFit().frame(maxHeight: 30).padding(5)
             }.padding(.horizontal)
             WaveFormPlayer(player: AVPlayer(url: URL(string: sound.wavFileURL)!), waveFormBuffer: sound.waveFormBuffer, waveFormColor: CategoryColors.getColor[sound.category] ?? .blue, waveFormHighlightColor: .white).padding(.bottom, 35)
-        }.background(Color.white).cornerRadius(10.0).shadow(radius: 10)
+        }.background(Color.white).cornerRadius(10.0).shadow(radius: 5)
     }
 }
 

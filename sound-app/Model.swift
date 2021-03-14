@@ -69,11 +69,3 @@ class OnboardingFirstTimeData: ObservableObject {
     @Published var purpose: String?
     @Published var group_id: String?
 }
-
-class RecordingStateObject: ObservableObject {
-    @Published var device_in_use: Device?
-    @Published var recordings = [Record]()
-    @Published var sound_name: String?
-    @Published var sound_category: String?
-    @Published var use_devices: [Device]?
-}

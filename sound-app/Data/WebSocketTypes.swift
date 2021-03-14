@@ -27,7 +27,7 @@ struct ONE_SECOND_RECORD_STATUS_Inbound: Codable {
 // ONE_SECOND_WAV_URL_STATUS
 struct ONE_SECOND_WAV_Inbound: Codable {
     var url: String
-    var waveFormBuffer: [Float]
+    var waveform: [Float]
 }
 
 // ONE_SECOND_DELETE
